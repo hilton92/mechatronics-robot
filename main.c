@@ -19,6 +19,8 @@ void caseSwitch();
 // Select oscillator
 _FOSCSEL(FNOSC_LPRC);
 
+_FICD(ICS_PGx3);
+
 
 
 //-----------------------------------------------------
@@ -27,12 +29,22 @@ _FOSCSEL(FNOSC_LPRC);
 
 int main()
 {
+    int testing = 1;
     
-    //configurations
-    mainConfig();
+    if(testing)
+    {
+        mainTest();
+        while(1);
+    }
     
-    //infinite loop through the cases
-    caseSwitch();
+    else
+    {
+        //configurations
+        mainConfig();
+
+        //infinite loop through the cases
+        caseSwitch();
+    }
  
     return 0;
 }

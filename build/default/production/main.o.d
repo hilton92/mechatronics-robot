@@ -1,7 +1,7 @@
 build/default/production/main.o:  \
 main.c  \
 enums.h  \
-events.h  \
-configurations.h  \
- eventCheckers.h  \
+handlers.h  \
+ configurations.h  \
+eventUpdaters.h  \
 stateChangers.h 
