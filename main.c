@@ -445,9 +445,6 @@ void caseSwitch()
                         //break out of the while loop
                         break;
                     }
-
-
-
                 }
                 break;
 
@@ -459,4 +456,5 @@ void caseSwitch()
 void mainConfig()
 {
     configureEvents();
+    configureIOPins();
 }

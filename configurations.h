@@ -16,9 +16,79 @@ void chooseADpin(int pin);
 void configureAD();
 void configurePWM(int ocx, int timer, int period);
 float readAD(int pin); //reads in value from 0 to 3.3 volts
+void configureTimerXInterrupt(int timer);
+void configureTimer(int timer);
 //---------------
 
+//configure timer
+void configureTimer(int timer, int prescaler)
+{
+    switch(timer)
+    {
+            case 1:
+                T1CONbits.TON = 1;
+                T1CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T1CONbits.TCS = 0;  //set timer 1 to internal clock
+                break;
+               
+            case 2:
+                T2CONbits.TON = 1;
+                T2CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T2CONbits.TCS = 0;  //set timer 1 to internal clock
+                break;
+            case 3:
+                T3CONbits.TON = 1;
+                T3CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T3CONbits.TCS = 0;  //set timer 1 to internal clock
+                break;
+    }               
+}
 
+//Configures the pins to be output or input pins
+void configureIOPins()
+{
+    ANSB = 0;
+    ANSA = 0;
+    
+    //configure motor pins
+    configurePWM(2,3,500); //left motor pin 4 RB0 
+    configurePWM(3,3,500); //right motor pin 5 RB1
+    _TRISA0 = 0;  //direction of left motor pin 2
+    _TRISA1 = 0;  //direction of right motor pin 3 
+     
+    
+    
+  
+}
+
+void configureTimerXInterrupt(int timer)
+{
+    switch(timer)
+    {
+            case 1:
+                T1CONbits.TON = 1;     //Turn on Timer1
+                T1CONbits.TCS = 0;     //Select internal clock as timer clock
+                _T1IP = 4;  // Setting the priority to be 4
+                _T1IE = 1;  // Enable Timer 1 interrupt
+                _T1IF = 0;  // Clear Timer1 interrupt flag
+                break;
+               
+            case 2:
+                T2CONbits.TON = 1;     //Turn on Timer2
+                T2CONbits.TCS = 0;     //Select internal clock as timer clock
+                _T2IP = 4;  // Setting the priority to be 4
+                _T2IE = 1;  // Enable Timer 2 interrupt
+                _T2IF = 0;  // Clear Timer2 interrupt flag
+                break;
+            case 3:
+                T3CONbits.TON = 1;     //Turn on Timer3
+                T3CONbits.TCS = 0;     //Select internal clock as timer clock
+                _T3IP = 4;  // Setting the priority to be 4
+                _T3IE = 1;  // Enable Timer 3 interrupt
+                _T3IF = 0;  // Clear Timer3 interrupt flag
+                break;
+    }               
+}
 
 //This function turns on the analog pin to be scanned
 void chooseADpin(int pin)

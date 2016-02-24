@@ -19,9 +19,19 @@ enum {DISPENSERLIGHTDETECTED, DISPENSERLIGHTTHRESHOLDMET, BINLIGHTDETECTED, BINL
 enum {WAITFORBUTTON, TURNFINDIR, FACEDISPENSER, DRIVETOCORNERQUICK, DRIVEINTOCORNER, LOADBALLS, DRIVETOMIDDLE, FACEBIN, BACKUPTOSHOOT, SHOOTGOALS};
 
 //event status variables
-enum {SHOOTTIME};
+enum {SHOOTTIME, PERIODCOUNT};
 
 //manipulator commands
 enum {CLEAR, UPDATE, REQUEST, INCREMENT};
+
+//other enums
+enum {LEFT, RIGHT};
+
+//global constants
+const unsigned char ONE_256 = 0b11;
+const unsigned char ONE_64 = 0b10;
+const unsigned char ONE_8 = 0b01;
+const unsigned char ONE_1 = 0b00;
+
 #endif	/* ENUMS_H */
 

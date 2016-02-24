@@ -220,6 +220,7 @@ void clearEvents()
 //--------------Do not call from outside this file!!!!
 int eventInfoManipulator(unsigned char action, unsigned char attribute, int value)
 {
+    static int periodCount;
     static int shootTime;
     switch(action)
     {
@@ -228,6 +229,10 @@ int eventInfoManipulator(unsigned char action, unsigned char attribute, int valu
             {
                 case SHOOTTIME:
                     shootTime = 0;
+                    return 0;
+                    break;
+                case PERIODCOUNT:
+                    periodCount = 0;
                     return 0;
                     break;
             }
@@ -239,6 +244,10 @@ int eventInfoManipulator(unsigned char action, unsigned char attribute, int valu
                     shootTime = value;
                     return 0;
                     break;
+                case PERIODCOUNT:
+                    periodCount = value;
+                    return 0;
+                    break;
             }
             break;
         case REQUEST:
@@ -247,6 +256,9 @@ int eventInfoManipulator(unsigned char action, unsigned char attribute, int valu
                 case SHOOTTIME:
                     return shootTime;
                     break;
+                case PERIODCOUNT:
+                    return periodCount;
+                    break;
             }
             break;
         case INCREMENT:
@@ -254,6 +266,10 @@ int eventInfoManipulator(unsigned char action, unsigned char attribute, int valu
             {
                 case SHOOTTIME:
                     shootTime = shootTime + value;
+                    return 0;
+                    break;
+                case PERIODCOUNT:
+                    periodCount = periodCount + value;
                     return 0;
                     break;
             }
@@ -301,12 +317,19 @@ int requestEventInfo(unsigned char event)
     }
 }
 
+void clearAllEventInfo()
+{
+    clearEventInfo(SHOOTTIME);
+    clearEventInfo(PERIODCOUNT);
+}
+
 void initializeEvents()
 {
     clearEvents();
-    clearEventInfo(SHOOTTIME);
+    clearAllEventInfo();
     setEventInactive(BALLSFULL);
 }
+
 
 
 #endif	/* EVENTS_H */
