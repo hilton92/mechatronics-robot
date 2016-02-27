@@ -1,11 +1,13 @@
 
 #include<p24F16KA301.h>
+#include<xc.h>
 
-#include"enums.h"
+#include"constants.h"
 #include"handlers.h"
 #include"configurations.h"
 #include"eventUpdaters.h"
 #include"stateChangers.h"
+#include"motorFunctions.h"
 
 //-----------------------------------------------------
 // Function STUBS
@@ -17,7 +19,7 @@ void caseSwitch();
 //-----------------------------------------------------
 // Configurations
 // Select oscillator
-_FOSCSEL(FNOSC_LPRC);
+_FOSCSEL(FNOSC_FRC);
 
 _FICD(ICS_PGx3);
 
@@ -33,6 +35,7 @@ int main()
     
     if(testing)
     {
+        mainConfig();
         mainTest();
         while(1);
     }
@@ -49,414 +52,90 @@ int main()
     return 0;
 }
 
-void caseSwitch()
-{
-    //initialize state variable and state
-    static unsigned char currentState = WAITFORBUTTON;
-    changeToState(WAITFORBUTTON);
-    
-    while(1)
-    {
-
-        switch (currentState)
-        {
-            case WAITFORBUTTON:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    //check event status
-                    else if(getEventStatus(BUTTONPRESSED) == 1)
-                    {
-                        //update state variable
-                        currentState = TURNFINDIR;
-
-                        //change to the state
-                        changeToState(TURNFINDIR);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-                }
-                break;
-
-            case TURNFINDIR:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkDispenserLightDetected();
-                    checkBinLightDetected();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(DISPENSERLIGHTDETECTED) && !getEventStatus(BALLSFULL) )
-                    {
-                        //update state variable
-                        currentState = FACEDISPENSER;
-
-                        //change to the state
-                        changeToState(FACEDISPENSER);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-                    //check other state specific events
-                    else if(getEventStatus(BINLIGHTDETECTED) && getEventStatus(BALLSFULL))
-                    {
-
-                        //update state variable
-                        currentState = FACEBIN;
-
-                        //change to the state
-                        changeToState(FACEBIN);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-                }
-                break;
-
-            case FACEDISPENSER:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkDispenserLightThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(DISPENSERLIGHTTHRESHOLDMET) == 1)
-                    {
-                        //update state variable
-                        currentState = DRIVETOCORNERQUICK;
-
-                        //change to the state
-                        changeToState(DRIVETOCORNERQUICK);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-                }
-                break;
-            case DRIVETOCORNERQUICK:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkOneSonicSensorThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(ONESONICSENSORTHRESHOLDMET))
-                    {
-                        //update state variable
-                        currentState = DRIVEINTOCORNER;
-
-                        //change to the state
-                        changeToState(DRIVEINTOCORNER);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-                }
-                break;
-
-            case DRIVEINTOCORNER:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkTwoSonicSensorThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(TWOSONICSENSORTHRESHOLDMET) && !getEventStatus(BALLSFULL))
-                    {
-                        //update state variable
-                        currentState = LOADBALLS;
-
-                        //change to the state
-                        changeToState(LOADBALLS);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-                    //check other state specific events
-                    else if(getEventStatus(TWOSONICSENSORTHRESHOLDMET) && getEventStatus(BALLSFULL))
-                    {
-
-                        //update state variable
-                        currentState = BACKUPTOSHOOT;
-
-                        //change to the state
-                        changeToState(BACKUPTOSHOOT);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-                }
-                break;
-
-
-            case LOADBALLS:
-
-                while(1)
-                { 
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(TIMER1MET) )
-                    {
-                        //update state variable
-                        currentState = DRIVETOMIDDLE;
-
-                        //change to the state
-                        changeToState(DRIVETOMIDDLE);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-
-
-                }
-                break;
-
-            case DRIVETOMIDDLE:
-
-                while(1)
-                { 
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(TIMER1MET))
-                    {
-                        //update state variable
-                        currentState = TURNFINDIR;
-
-                        //change to the state
-                        changeToState(TURNFINDIR);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-
-
-                }
-                break;
-            case FACEBIN:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkBinLightThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(BINLIGHTTHRESHOLDMET) == 1)
-                    {
-                        //update state variable
-                        currentState = DRIVETOCORNERQUICK;
-
-                        //change to the state
-                        changeToState(DRIVETOCORNERQUICK);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-
-
-                }
-                break;  
-
-            case BACKUPTOSHOOT:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkButtonPressed();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(BUTTONPRESSED) == 1)
-                    {
-                        //update state variable
-                        currentState = TURNFINDIR;
-
-                        //change to the state
-                        changeToState(TURNFINDIR);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-
-                }
-                break;
-
-            case SHOOTGOALS:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkBinLightNotDetected();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(BINLIGHTNOTDETECTED) || !getEventStatus(BALLSFULL))
-                    {
-                        //update state variable
-                        currentState = DRIVETOMIDDLE;
-
-                        //change to the state
-                        changeToState(DRIVETOMIDDLE);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-
-
-                }
-                break;
-
-
-        }
-    }
-}
 //call the needed initialization configurations
 void mainConfig()
 {
     configureEvents();
+    configureIOPins();
+    configureTimers();
+    configureTimerInterrupts();
+}
+
+
+
+
+
+/////////////////////////Tests
+
+
+
+void driveToCornerQuickTest();
+void rotate90();
+
+int mainTest()
+{
+    
+    
+    driveToCornerQuickTest();
+    
+    int i = 0;
+    while(i < 5)
+    {
+        i = i + 1;
+    }
+ 
+    setToNullState();  
+    rotate90();
+ //   setToNullState();
+//    driveToCornerQuickTest();
+//    
+//    i = 0;
+//    while(i < 10000)
+//    {
+//        i++;
+//    }
+//
+//    setToNullState();
+
+    return 0;
+}
+
+void driveToCornerQuickTest()
+{
+   
+    //set motor direction
+    setMotorDirection(LEFT,FORWARD);
+    setMotorDirection(RIGHT,FORWARD); 
+    
+     //set motor speed
+    setMotorSpeed(LEFT,MOTORHIGHSPEED);
+    setMotorSpeed(RIGHT, MOTORHIGHSPEED);  
+    
+    //turn on motors
+    toggleMotors(LEFT,ON);
+    toggleMotors(RIGHT,ON);  
+
+}
+   
+void rotate90()
+{
+    //set motor direction
+    setMotorDirection(LEFT,BACKWARD);
+    setMotorDirection(RIGHT,FORWARD); 
+    
+     //set motor speed
+    setMotorSpeed(LEFT,MOTORLOWSPEED);
+    setMotorSpeed(RIGHT, MOTORLOWSPEED);  
+    
+    //turn on motors
+    toggleMotors(LEFT,ON);
+    toggleMotors(RIGHT,ON); 
+    
+    clearEventInfo(PERIODCOUNTRIGHT);
+    PR4 = MOTORLOWSPEED;
+        while(requestEventInfo(PERIODCOUNTRIGHT) < 492)
+        {            
+        }
+    
+    int i = 8;
 }

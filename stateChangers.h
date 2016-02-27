@@ -86,6 +86,7 @@ void changeToState(unsigned char state)
             //enter the state
             shootGoals();
             break;
+            
     }
     
 }
@@ -163,6 +164,8 @@ void shootGoals()
 void setToNullState()
 {
     //disengage all motors and actuators 
+    toggleMotors(LEFT,OFF);
+    toggleMotors(RIGHT,OFF);   
 }
 #endif	/* STATECHANGERS_H */
 

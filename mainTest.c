@@ -1,5 +1,7 @@
 
 #include<p24F16KA301.h>
+#include<xc.h>
+//#include"constants.h"
 
 //#include"enums.h"
 //#include"handlers.h"
@@ -7,7 +9,7 @@
 //#include"eventUpdaters.h"
 //#include"stateChangers.h"
 
-
+/*
 
 
 void driveToCornerQuickTest();
@@ -29,23 +31,40 @@ void driveToCornerQuickTest()
     
     // Configure PWM pins
     //configurePWM(1,3,12500);
-    configurePWM(2,3,12500); //right motor
-    configurePWM(3,3,12500); //left motor
     
-    _TRISA0 = 0; //pin 2 two right motor direction
-    _TRISA1 = 0; //pin 3 left motor direction
+    //set motor direction
+    setMotorDirection(LEFT,FORWARD);
+    setMotorDirection(RIGHT,FORWARD); 
     
-    ANSA = 0;
-    ANSB = 0;
+     //set motor speed
+    setMotorSpeed(LEFT,MOTORLOWSPEED);
+    setMotorSpeed(RIGHT, MOTORLOWSPEED);  
     
-    _LATA0 = 1;
-    _LATA1 = 1;
+    //turn on motors
+    toggleMotors(LEFT,ON);
+    toggleMotors(RIGHT,ON);
+    
+
+    
+
+    
+
     
     
-    T3CONbits.TON = 1; //Turn on timer 3
-    T3CONbits.TCKPS = 0b01; //1:8 ratio for timer 3
-    T3CONbits.TCS = 0;  //set timer 3 to internal clock
-    OC2R =  6250;
-    OC3R =  6250;    
+//    _TRISA0 = 0; //pin 2 two right motor direction
+//    _TRISA1 = 0; //pin 3 left motor direction
+    
+
+    
+//    _LATA0 = 1;
+//    _LATA1 = 1;
+    
+    
+//    T3CONbits.TON = 1; //Turn on timer 3
+//    T3CONbits.TCKPS = 0b01; //1:8 ratio for timer 3
+//    T3CONbits.TCS = 0;  //set timer 3 to internal clock
+//    OC2R =  6250;
+//    OC3R =  6250;    
 
 }
+*/

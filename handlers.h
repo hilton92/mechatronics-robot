@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "enums.h"
+#include "constants.h"
 
 
 
@@ -220,6 +220,8 @@ void clearEvents()
 //--------------Do not call from outside this file!!!!
 int eventInfoManipulator(unsigned char action, unsigned char attribute, int value)
 {
+    static int periodCountLeft;
+    static int periodCountRight;
     static int shootTime;
     switch(action)
     {
@@ -228,6 +230,14 @@ int eventInfoManipulator(unsigned char action, unsigned char attribute, int valu
             {
                 case SHOOTTIME:
                     shootTime = 0;
+                    return 0;
+                    break;
+                case PERIODCOUNTLEFT:
+                    periodCountLeft = 0;
+                    return 0;
+                    break;
+                case PERIODCOUNTRIGHT:
+                    periodCountRight = 0;
                     return 0;
                     break;
             }
@@ -239,6 +249,14 @@ int eventInfoManipulator(unsigned char action, unsigned char attribute, int valu
                     shootTime = value;
                     return 0;
                     break;
+                case PERIODCOUNTLEFT:
+                    periodCountLeft = value;
+                    return 0;
+                    break;
+                case PERIODCOUNTRIGHT:
+                    periodCountRight = value;
+                    return 0;
+                    break;
             }
             break;
         case REQUEST:
@@ -247,6 +265,12 @@ int eventInfoManipulator(unsigned char action, unsigned char attribute, int valu
                 case SHOOTTIME:
                     return shootTime;
                     break;
+                case PERIODCOUNTLEFT:
+                    return periodCountLeft;
+                    break;
+                case PERIODCOUNTRIGHT:
+                    return periodCountRight;
+                    break;
             }
             break;
         case INCREMENT:
@@ -254,6 +278,14 @@ int eventInfoManipulator(unsigned char action, unsigned char attribute, int valu
             {
                 case SHOOTTIME:
                     shootTime = shootTime + value;
+                    return 0;
+                    break;
+                case PERIODCOUNTLEFT:
+                    periodCountLeft = periodCountLeft + value;
+                    return 0;
+                    break;
+                case PERIODCOUNTRIGHT:
+                    periodCountRight = periodCountRight + value;
                     return 0;
                     break;
             }
@@ -301,12 +333,20 @@ int requestEventInfo(unsigned char event)
     }
 }
 
+void clearAllEventInfo()
+{
+    clearEventInfo(SHOOTTIME);
+    clearEventInfo(PERIODCOUNTRIGHT);
+    clearEventInfo(PERIODCOUNTLEFT);
+}
+
 void initializeEvents()
 {
     clearEvents();
-    clearEventInfo(SHOOTTIME);
+    clearAllEventInfo();
     setEventInactive(BALLSFULL);
 }
+
 
 
 #endif	/* EVENTS_H */

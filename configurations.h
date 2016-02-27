@@ -6,6 +6,7 @@
  */
 
 #include "handlers.h"
+#include "caseSwitch.h"
 
 #ifndef CONFIGURATIONS_H
 #define	CONFIGURATIONS_H
@@ -16,9 +17,117 @@ void chooseADpin(int pin);
 void configureAD();
 void configurePWM(int ocx, int timer, int period);
 float readAD(int pin); //reads in value from 0 to 3.3 volts
+void configureTimerXInterrupt(int timer);
+void configureTimer(int timer, int perscaler);
 //---------------
 
+//configure timer
+void configureTimer(int timer, int prescaler)
+{
+    switch(timer)
+    {
+            case 1:
+                T1CONbits.TON = 1;
+                T1CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T1CONbits.TCS = 0;  //set timer 1 to internal clock
+                break;
+               
+            case 2:
+                T2CONbits.TON = 1;
+                T2CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T2CONbits.TCS = 0;  //set timer 1 to internal clock
+                break;
+            case 3:
+                T3CONbits.TON = 1;
+                T3CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T3CONbits.TCS = 0;  //set timer 1 to internal clock
+                break;
+            case 4:
+                T4CONbits.TON = 1;
+                T4CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T4CONbits.TCS = 0;  //set timer 1 to internal clock
+                break;
+            case 5:
+                T5CONbits.TON = 1;
+                T5CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T5CONbits.TCS = 0;  //set timer 1 to internal clock
+                break;
+    }               
+}
 
+void configureTimers()
+{
+    configureTimer(2,PRESCALE_ONE_8);
+    configureTimer(3,PRESCALE_ONE_8);
+    configureTimer(4,PRESCALE_ONE_8);
+}
+
+void configureTimerInterrupts()
+{
+    configureTimerXInterrupt(4);
+}
+
+//Configures the pins to be output or input pins
+void configureIOPins()
+{
+    ANSB = 0;
+    ANSA = 0;
+    
+    _TRISA0 = 0; //left motor direction pin 2
+    _TRISA1 = 0; //right motor direction pin 3
+    
+    //configure motor pins
+    configurePWM(2,2,500); //left motor pin 4 RB0 
+    configurePWM(3,3,500); //right motor pin 5 RB1
+    
+    toggleMotors(LEFT,OFF);
+    toggleMotors(RIGHT,OFF);    
+    
+  
+}
+
+void configureTimerXInterrupt(int timer)
+{
+    switch(timer)
+    {
+            case 1:
+                //T1CONbits.TON = 1;     //Turn on Timer1
+                //T1CONbits.TCS = 0;     //Select internal clock as timer clock
+                _T1IP = 1;  // Setting the priority to be 4
+                _T1IE = 1;  // Enable Timer 1 interrupt
+                _T1IF = 0;  // Clear Timer1 interrupt flag
+                break;
+               
+            case 2:
+              //  T2CONbits.TON = 1;     //Turn on Timer2
+              //  T2CONbits.TCS = 0;     //Select internal clock as timer clock
+                _T2IP = 3;  // Setting the priority to be 4
+                _T2IE = 1;  // Enable Timer 2 interrupt
+                _T2IF = 0;  // Clear Timer2 interrupt flag
+                break;
+            case 3:
+                //T3CONbits.TON = 1;     //Turn on Timer3
+                //T3CONbits.TCS = 0;     //Select internal clock as timer clock
+                _T3IP = 4;  // Setting the priority to be 4
+                _T3IE = 1;  // Enable Timer 3 interrupt
+                _T3IF = 0;  // Clear Timer3 interrupt flag
+                break;
+            case 4:
+                //T3CONbits.TON = 1;     //Turn on Timer3
+                //T3CONbits.TCS = 0;     //Select internal clock as timer clock
+                _T4IP = 5;  // Setting the priority to be 4
+                _T4IE = 1;  // Enable Timer 3 interrupt
+                _T4IF = 0;  // Clear Timer3 interrupt flag
+                break;
+            case 5:
+                //T3CONbits.TON = 1;     //Turn on Timer3
+                //T3CONbits.TCS = 0;     //Select internal clock as timer clock
+                _T5IP = 6;  // Setting the priority to be 4
+                _T5IE = 1;  // Enable Timer 3 interrupt
+                _T5IF = 0;  // Clear Timer3 interrupt flag
+                break;
+    }               
+}
 
 //This function turns on the analog pin to be scanned
 void chooseADpin(int pin)
