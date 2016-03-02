@@ -8,11 +8,13 @@
 #include"eventUpdaters.h"
 #include"stateChangers.h"
 #include"motorFunctions.h"
+#include"interrupt.h"
 
 //-----------------------------------------------------
 // Function STUBS
 void mainConfig();
 void caseSwitch();
+int mainTest();
 
 
 
@@ -28,6 +30,20 @@ _FICD(ICS_PGx3);
 //-----------------------------------------------------
 // Main Function
 
+int dispenserLightDetected = 0;
+int dispenserLightThresholdMet = 0;
+int binLightDetected = 0;
+int binLightNotDetected = 0;
+int binLightThresholdMet = 0;
+int oneSonicSensorThresholdMet = 0;
+int twoSonicSensorThresholdMet = 0;
+int timer1Met = 0;
+int buttonPressed = 0;
+int ballsFull = 0;
+
+int periodCountLeft = 0;
+int periodCountRight = 0;
+int shootTime = 0;
 
 int main()
 {
@@ -78,24 +94,36 @@ int mainTest()
     
     driveToCornerQuickTest();
     
-    int i = 0;
-    while(i < 5)
+    unsigned int i = 0;
+    unsigned int k = 0;
+    while(i < 60000)
     {
-        i = i + 1;
+        i++;
+        while(k < 5)
+        {
+            k++;
+        }
+        k = 0;
     }
  
     setToNullState();  
     rotate90();
- //   setToNullState();
-//    driveToCornerQuickTest();
-//    
-//    i = 0;
-//    while(i < 10000)
-//    {
-//        i++;
-//    }
-//
-//    setToNullState();
+    setToNullState();
+    driveToCornerQuickTest();
+    
+    i = 0;
+    k = 0;
+    while(i < 60000)
+    {
+        i++;
+        while(k < 5)
+        {
+            k++;
+        }
+        k = 0;
+    }
+
+    setToNullState();
 
     return 0;
 }
@@ -112,8 +140,9 @@ void driveToCornerQuickTest()
     setMotorSpeed(RIGHT, MOTORHIGHSPEED);  
     
     //turn on motors
-    toggleMotors(LEFT,ON);
-    toggleMotors(RIGHT,ON);  
+//    toggleMotors(LEFT,ON);
+//    toggleMotors(RIGHT,ON);  
+    toggleMotorsOn();
 
 }
    
@@ -128,14 +157,16 @@ void rotate90()
     setMotorSpeed(RIGHT, MOTORLOWSPEED);  
     
     //turn on motors
-    toggleMotors(LEFT,ON);
-    toggleMotors(RIGHT,ON); 
+//    toggleMotors(LEFT,ON);
+//    toggleMotors(RIGHT,ON); 
+    toggleMotorsOn();
     
-    clearEventInfo(PERIODCOUNTRIGHT);
+    //clearEventInfo(PERIODCOUNTRIGHT);
+    periodCountRight = 0;
     PR4 = MOTORLOWSPEED;
-        while(requestEventInfo(PERIODCOUNTRIGHT) < 492)
-        {            
-        }
+    while(periodCountRight < 492)
+    {            
+    }
     
     int i = 8;
 }

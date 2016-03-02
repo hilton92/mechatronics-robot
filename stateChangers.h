@@ -4,7 +4,8 @@
  *
  * Created on February 6, 2016, 2:03 PM
  */
-#include"handlers.h"
+#include "handlers.h"
+#include "motorFunctions.h"
 
 #ifndef STATECHANGERS_H
 #define	STATECHANGERS_H

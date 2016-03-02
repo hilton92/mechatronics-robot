@@ -93,7 +93,7 @@ void configureTimerXInterrupt(int timer)
             case 1:
                 //T1CONbits.TON = 1;     //Turn on Timer1
                 //T1CONbits.TCS = 0;     //Select internal clock as timer clock
-                _T1IP = 1;  // Setting the priority to be 4
+                _T1IP = 4;  // Setting the priority to be 4
                 _T1IE = 1;  // Enable Timer 1 interrupt
                 _T1IF = 0;  // Clear Timer1 interrupt flag
                 break;
@@ -101,7 +101,7 @@ void configureTimerXInterrupt(int timer)
             case 2:
               //  T2CONbits.TON = 1;     //Turn on Timer2
               //  T2CONbits.TCS = 0;     //Select internal clock as timer clock
-                _T2IP = 3;  // Setting the priority to be 4
+                _T2IP = 4;  // Setting the priority to be 4
                 _T2IE = 1;  // Enable Timer 2 interrupt
                 _T2IF = 0;  // Clear Timer2 interrupt flag
                 break;
@@ -115,14 +115,14 @@ void configureTimerXInterrupt(int timer)
             case 4:
                 //T3CONbits.TON = 1;     //Turn on Timer3
                 //T3CONbits.TCS = 0;     //Select internal clock as timer clock
-                _T4IP = 5;  // Setting the priority to be 4
+                _T4IP = 4;  // Setting the priority to be 4
                 _T4IE = 1;  // Enable Timer 3 interrupt
                 _T4IF = 0;  // Clear Timer3 interrupt flag
                 break;
             case 5:
                 //T3CONbits.TON = 1;     //Turn on Timer3
                 //T3CONbits.TCS = 0;     //Select internal clock as timer clock
-                _T5IP = 6;  // Setting the priority to be 4
+                _T5IP = 4;  // Setting the priority to be 4
                 _T5IE = 1;  // Enable Timer 3 interrupt
                 _T5IF = 0;  // Clear Timer3 interrupt flag
                 break;

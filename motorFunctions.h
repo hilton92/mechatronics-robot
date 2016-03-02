@@ -50,19 +50,24 @@ void toggleMotors(unsigned char motor, int onoff)
     {
         case LEFT:
             if(onoff == 1)
-                OC2R = 100;
+                OC2R = 300;
             else
                 OC2R = 0;
             break;
                 
         case RIGHT:
             if(onoff == 1)
-                OC3R = 100;
+                OC3R = 300;
             else
                 OC3R = 0;
             break;
     }                    
                     
+}
+
+void toggleMotorsOn()
+{
+    OC2R = 300;
 }
 
 #endif	/* MOTORFUNCTIONS_H */
