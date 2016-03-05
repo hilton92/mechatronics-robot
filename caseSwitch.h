@@ -4,6 +4,9 @@
  *
  * Created on February 27, 2016, 10:12 AM
  */
+#include "stateChangers.h"
+#include "eventUpdaters.h"
+
 
 #ifndef CASESWITCH_H
 #define	CASESWITCH_H

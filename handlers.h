@@ -34,20 +34,26 @@ int eventManipulator(unsigned char, unsigned char, int);
 
 
 
+extern int dispenserLightDetected;
+extern int dispenserLightThresholdMet;
+extern int binLightDetected;
+extern int binLightNotDetected;
+extern int binLightThresholdMet;
+extern int oneSonicSensorThresholdMet;
+extern int twoSonicSensorThresholdMet;
+extern int timer1Met;
+extern int buttonPressed;
+extern int ballsFull;
+
+extern int periodCountLeft;
+extern int periodCountRight;
+extern int shootTime;
+
 //Function Definitions----------------------------------------
 int eventManipulator(unsigned char action, unsigned char event, int value)
 {
     //event variables 0 = inactive 1 = active
-    static int dispenserLightDetected;
-    static int dispenserLightThresholdMet;
-    static int binLightDetected;
-    static int binLightNotDetected;
-    static int binLightThresholdMet;
-    static int oneSonicSensorThresholdMet;
-    static int twoSonicSensorThresholdMet;
-    static int timer1Met;
-    static int buttonPressed;
-    static int ballsFull;
+
     
     //ACTION CLEAR--note balls loaded doesn't get cleared
     if (action == CLEAR)
@@ -179,8 +185,9 @@ int getEventStatus(unsigned char event)
     if(status == 200)
     {
         //error 
-        perror("getEventStatus received invalid event");
-        exit(1);
+       // perror("getEventStatus received invalid event");
+        //exit(1);
+        return 200;
     }
     else
     {
@@ -195,8 +202,8 @@ void setEventActive(unsigned char event)
     if(status == 200)
     {
         //error 
-        perror("updateEventActive received invalid event");
-        exit(1); 
+       // perror("updateEventActive received invalid event");
+        //exit(1); 
     }
 }
 
@@ -207,8 +214,8 @@ void setEventInactive(unsigned char event)
     if(status == 200)
     {
         //error 
-        perror("updateEventInactive received invalid event");
-        exit(1); 
+       // perror("updateEventInactive received invalid event");
+        //exit(1); 
     }
 }
 
@@ -220,9 +227,7 @@ void clearEvents()
 //--------------Do not call from outside this file!!!!
 int eventInfoManipulator(unsigned char action, unsigned char attribute, int value)
 {
-    static int periodCountLeft;
-    static int periodCountRight;
-    static int shootTime;
+
     switch(action)
     {
         case CLEAR:
@@ -301,8 +306,8 @@ void incrementEventInfo(unsigned char event, int value)
     if(status == -200)
     {
         //error 
-        perror("updateEventActive received invalid event");
-        exit(1); 
+       // perror("updateEventActive received invalid event");
+       // exit(1); 
     }
 }
 
@@ -312,8 +317,8 @@ void clearEventInfo(unsigned char event)
     if(status == -200)
     {
         //error 
-        perror("updateEventActive received invalid event");
-        exit(1); 
+        //perror("updateEventActive received invalid event");
+       // exit(1); 
     }
 }
 
@@ -323,8 +328,9 @@ int requestEventInfo(unsigned char event)
     if(status == -200)
     {
         //error 
-        perror("updateEventActive received invalid event");
-        exit(1); 
+        //perror("updateEventActive received invalid event");
+       // exit(1); 
+        return 200;
     }
     else
     {
