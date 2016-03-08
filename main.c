@@ -30,6 +30,7 @@ _FICD(ICS_PGx3);
 //-----------------------------------------------------
 // Main Function
 
+//global events-  0 or 1 --------------------
 int dispenserLightDetected = 0;
 int dispenserLightThresholdMet = 0;
 int binLightDetected = 0;
@@ -41,6 +42,7 @@ int timer1Met = 0;
 int buttonPressed = 0;
 int ballsFull = 0;
 
+//global state info variables----------------
 int periodCountLeft = 0;
 int periodCountRight = 0;
 int shootTime = 0;

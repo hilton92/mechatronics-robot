@@ -33,7 +33,7 @@ int eventManipulator(unsigned char, unsigned char, int);
 
 
 
-
+//event variables 1 or 0
 extern int dispenserLightDetected;
 extern int dispenserLightThresholdMet;
 extern int binLightDetected;
@@ -45,6 +45,7 @@ extern int timer1Met;
 extern int buttonPressed;
 extern int ballsFull;
 
+//event info variables
 extern int periodCountLeft;
 extern int periodCountRight;
 extern int shootTime;
@@ -52,7 +53,6 @@ extern int shootTime;
 //Function Definitions----------------------------------------
 int eventManipulator(unsigned char action, unsigned char event, int value)
 {
-    //event variables 0 = inactive 1 = active
 
     
     //ACTION CLEAR--note balls loaded doesn't get cleared
@@ -184,9 +184,6 @@ int getEventStatus(unsigned char event)
     int status = eventManipulator(REQUEST, event, 0);
     if(status == 200)
     {
-        //error 
-       // perror("getEventStatus received invalid event");
-        //exit(1);
         return 200;
     }
     else
@@ -201,9 +198,7 @@ void setEventActive(unsigned char event)
     int status = eventManipulator(UPDATE, event, 1);
     if(status == 200)
     {
-        //error 
-       // perror("updateEventActive received invalid event");
-        //exit(1); 
+        
     }
 }
 
