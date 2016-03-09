@@ -18,7 +18,7 @@ void caseSwitch();
 
 
 void caseSwitch()
-{
+{/*
     //initialize state variable and state
     static unsigned char currentState = WAITFORBUTTON;
     changeToState(WAITFORBUTTON);
@@ -418,7 +418,7 @@ void caseSwitch()
 
 
         }
-    }
+    }*/
 }
 
 #endif	/* CASESWITCH_H */

@@ -28,7 +28,7 @@ void __attribute__((interrupt, no_auto_psv)) _T2Interrupt(void)
     // PLACE CODE TO CLEAR THE TIMER1 INTERRUPT FLAG HERE
     _T2IF = 0;
     TMR2 = 0;
-
+    periodCount++;
 }
 
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void)
@@ -50,7 +50,6 @@ void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void)
     // PLACE CODE TO CLEAR THE TIMER1 INTERRUPT FLAG HERE
     _T4IF = 0;
     TMR4 = 0;
-    periodCountRight++;
 }
 
 void __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)
@@ -61,7 +60,7 @@ void __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)
     // PLACE CODE TO CLEAR THE TIMER1 INTERRUPT FLAG HERE
     _T5IF = 0;
     TMR5 = 0;
-    incrementEventInfo(PERIODCOUNTRIGHT, 1);
+    timer5Met = 1;
 }
 
 

@@ -13,6 +13,11 @@
 void toggleMotors(unsigned char, int);
 void setMotorDirection(unsigned char, int);
 void setMotorSpeed(unsigned char, int);
+void toggleMotorsOn();
+void toggleMotorsOff();
+void setBothMotorSpeeds(int);
+void rotateXDegrees(int);
+
 
 void setMotorSpeed(unsigned char motor, int speed)
 {
@@ -68,6 +73,46 @@ void toggleMotors(unsigned char motor, int onoff)
 void toggleMotorsOn()
 {
     OC2R = 300;
+}
+
+void toggleMotorsOff()
+{
+    OC2R = 0;
+}
+
+void setBothMotorSpeeds(int speed)
+{
+    OC2R = speed;
+}
+
+void rotateXDegrees(int degree)
+{
+    toggleMotorsOff();
+    
+    //set motor direction
+    setMotorDirection(LEFT,BACKWARD);
+    setMotorDirection(RIGHT,FORWARD); 
+    
+     //set motor speeds
+    setMotorSpeed(LEFT,MOTORLOWSPEED);
+    setMotorSpeed(RIGHT, MOTORLOWSPEED);  
+    
+    //turn on motors
+//    toggleMotors(LEFT,ON);
+//    toggleMotors(RIGHT,ON); 
+    toggleMotorsOn();
+    
+    //clearEventInfo(PERIODCOUNTRIGHT);
+    setLow(&periodCount);
+    //PR4 = MOTORLOWSPEED;
+    
+    //convert degree to counts
+    int count = QUARTERTURNCOUNT/90.0 * degree;
+    
+    while(periodCount < count)
+    {          
+    }
+    
 }
 
 #endif	/* MOTORFUNCTIONS_H */

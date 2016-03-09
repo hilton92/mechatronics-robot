@@ -38,6 +38,7 @@ const unsigned char PRESCALE_ONE_8 = 0b01;
 const unsigned char PRESCALE_ONE_1 = 0b00;
 const int MOTORLOWSPEED = 1300; //period for motors
 const int MOTORHIGHSPEED = 600; //period for motors
+const unsigned int QUARTERTURNCOUNT = 492;
 
 #endif	/* ENUMS_H */
 
