@@ -97,12 +97,13 @@ void mainConfig()
 
 
 void driveToCornerQuickTest();
+void testIRSensors();
 
 int mainTest()
 {
     
-    
-    driveToCornerQuickTest();
+    testIRSensors();
+    /*driveToCornerQuickTest();
         
     delayMS(2000);
  
@@ -112,13 +113,20 @@ int mainTest()
     driveToCornerQuickTest();
     
 
-    delayMS(2000);
+    delayMS(2000);*/
 
     setToNullState();
 
     return 0;
 }
 
+
+void testIRSensors(){
+   
+    while(ADC1BUF11 < 2000){
+        rotateXDegrees(2);
+        delayMS(300);
+    }
 void driveToCornerQuickTest()
 {
    
