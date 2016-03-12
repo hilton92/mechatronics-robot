@@ -139,6 +139,7 @@ void chooseADpin(int pin)
     switch(pin)
     {
             case 2: //AN0 pin 2
+                _ANSA0 = 1;
                _CSS0 = 1;
                break;
             case 3: //AN1 pin 3
