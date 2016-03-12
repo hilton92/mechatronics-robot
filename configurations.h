@@ -71,7 +71,7 @@ void configureTimerInterrupts()
 void configureIOPins()
 {
     ANSB = 0;
-    ANSA = 0;
+    ANSA = 0;    
     
     _TRISA0 = 0; //left motor direction pin 2
     _TRISA1 = 0; //right motor direction pin 3

@@ -52,19 +52,19 @@ void caseSwitch()
                         break;
                     }
 
-                    //check other state specific events
-                    else if(getEvent() && getEventStatus(BALLSFULL))
-                    {
-
-                        //update state variable
-                        currentState = FACEBIN;
-
-                        //change to the state
-                        changeToState(FACEBIN);
-
-                        //break out of the while loop
-                        break;
-                    }
+//                    //check other state specific events
+//                    else if(getEvent(&binLightDetected) && getEventInfo(&ballsFull))
+//                    {
+//
+//                        //update state variable
+//                        currentState = FACEBIN;
+//
+//                        //change to the state
+//                        changeToState(FACEBIN);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
 
                 }
                 break;
@@ -78,33 +78,33 @@ void caseSwitch()
                 while(1)
                 { 
                     //state specific updaters
-                    checkDispenserLightThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
+//                    checkDispenserLightThresholdMet();
+//                    checkButtonPressed();
+//                    
+//                    if(getEventStatus(BUTTONPRESSED))
+//                    {
+//                        //update state variable
+//                        currentState = WAITFORBUTTON;
+//                        
+//                        //change to the state
+//                        changeToState(WAITFORBUTTON);
+//                        
+//                        //break out of while loop
+//                        break;
+//                    }
                     
                     //check event status
-                    else if(getEventStatus(DISPENSERLIGHTTHRESHOLDMET) == 1)
-                    {
-                        //update state variable
-                        currentState = DRIVETOCORNERQUICK;
-
-                        //change to the state
-                        changeToState(DRIVETOCORNERQUICK);
-
-                        //break out of the while loop
-                        break;
-                    }
+//                    if(getEventStatus(DISPENSERLIGHTTHRESHOLDMET) == 1)
+//                    {
+//                        //update state variable
+//                        currentState = DRIVETOCORNERQUICK;
+//
+//                        //change to the state
+//                        changeToState(DRIVETOCORNERQUICK);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
 
                 }
                 break;
@@ -115,32 +115,20 @@ void caseSwitch()
                 { 
                     //state specific updaters
                     checkOneSonicSensorThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(ONESONICSENSORTHRESHOLDMET))
-                    {
-                        //update state variable
-                        currentState = DRIVEINTOCORNER;
 
-                        //change to the state
-                        changeToState(DRIVEINTOCORNER);
-
-                        //break out of the while loop
-                        break;
-                    }
+                    
+//                    //check event status
+//                    if(getEventStatus(ONESONICSENSORTHRESHOLDMET))
+//                    {
+//                        //update state variable
+//                        currentState = DRIVEINTOCORNER;
+//
+//                        //change to the state
+//                        changeToState(DRIVEINTOCORNER);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
 
                 }
                 break;
@@ -151,19 +139,7 @@ void caseSwitch()
                 { 
                     //state specific updaters
                     checkTwoSonicSensorThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
+
                     /*
                     //check event status
                     else if(getEventStatus(TWOSONICSENSORTHRESHOLDMET) && !getEventStatus(BALLSFULL))
@@ -202,20 +178,7 @@ void caseSwitch()
                 { 
                     checkButtonPressed();
                     
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(TIMER1MET) )
+                    if(getEventStatus(TIMER1MET) )
                     {
                         //update state variable
                         currentState = DRIVETOMIDDLE;
@@ -238,20 +201,8 @@ void caseSwitch()
                 { 
                     checkButtonPressed();
                     
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(TIMER1MET))
+                    // check event status
+                    if(getEventStatus(TIMER1MET))
                     {
                         //update state variable
                         currentState = TURNFINDIR;
