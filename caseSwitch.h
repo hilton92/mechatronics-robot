@@ -40,7 +40,7 @@ void caseSwitch()
                     checkBinLightDetected();                   
                     
                     //check event status
-                    else if(getEvent(&dispenserLightDetected) && !getEventInfo(&ballsFull) )
+                    if(getEvent(&dispenserLightDetected) && !getEventInfo(&ballsFull) )
                     {
                         //update state variable
                         currentState = FACEDISPENSER;
@@ -53,7 +53,7 @@ void caseSwitch()
                     }
 
                     //check other state specific events
-                    else if(getEventStatus(BINLIGHTDETECTED) && getEventStatus(BALLSFULL))
+                    else if(getEvent() && getEventStatus(BALLSFULL))
                     {
 
                         //update state variable

@@ -82,7 +82,8 @@ int main()
 void mainConfig()
 {
     configureEvents();
-    configureIOPins();
+    configureAD();
+    configureIOPins();   
     configureTimers();
     configureTimerInterrupts();
 }
