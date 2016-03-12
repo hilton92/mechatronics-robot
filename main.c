@@ -102,10 +102,7 @@ int mainTest()
     
     
     driveToCornerQuickTest();
-    
-    unsigned int i = 0;
-    unsigned int k = 0;
-    
+        
     delayMS(2000);
  
     setToNullState();  
@@ -113,8 +110,6 @@ int mainTest()
     setToNullState();
     driveToCornerQuickTest();
     
-    i = 0;
-    k = 0;
 
     delayMS(2000);
 
@@ -131,8 +126,8 @@ void driveToCornerQuickTest()
     setMotorDirection(RIGHT,FORWARD); 
     
      //set motor speed
-    setMotorSpeed(LEFT,MOTORHIGHSPEED);
-    setMotorSpeed(RIGHT, MOTORHIGHSPEED);  
+    setBothMotorSpeeds(MOTORHIGHSPEED);
+
     
     //turn on motors
 //    toggleMotors(LEFT,ON);

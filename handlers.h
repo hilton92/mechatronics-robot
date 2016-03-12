@@ -22,6 +22,8 @@ void initializeEvents();
 void setLow(int*);
 void setHigh(int*);
 void incrementByOne(int*);
+int getEvent(int*);
+int getEventInfo(int*);
 
 //----------------------------------------------------------
 
@@ -93,6 +95,29 @@ void setLow(int *variable)
 void incrementByOne(int *variable)
 {
     *variable = *variable + 1;
+}
+
+int getEvent(int *variable)
+{
+    if(*variable == 1)
+    {
+        return 1;
+    }
+    else if(*variable == 0)
+    {
+        return 0;
+    }  
+    
+    //error
+    else
+    {
+        exit(0);
+    }
+}
+
+int getEventInfo(int *variable)
+{
+    return *variable;
 }
 
 

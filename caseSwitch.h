@@ -18,49 +18,18 @@ void caseSwitch();
 
 
 void caseSwitch()
-{/*
+{
     //initialize state variable and state
-    static unsigned char currentState = WAITFORBUTTON;
-    changeToState(WAITFORBUTTON);
+    static unsigned char currentState = DRIVETOMIDDLE;
+    
+    //initialize state
+    //changeToState(WAITFORBUTTON);
     
     while(1)
     {
 
         switch (currentState)
         {
-            case WAITFORBUTTON:
-
-                while(1)
-                { 
-                    //state specific updaters
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    //check event status
-                    else if(getEventStatus(BUTTONPRESSED) == 1)
-                    {
-                        //update state variable
-                        currentState = TURNFINDIR;
-
-                        //change to the state
-                        changeToState(TURNFINDIR);
-
-                        //break out of the while loop
-                        break;
-                    }
-
-                }
-                break;
 
             case TURNFINDIR:
 
@@ -68,23 +37,10 @@ void caseSwitch()
                 { 
                     //state specific updaters
                     checkDispenserLightDetected();
-                    checkBinLightDetected();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
+                    checkBinLightDetected();                   
                     
                     //check event status
-                    else if(getEventStatus(DISPENSERLIGHTDETECTED) && !getEventStatus(BALLSFULL) )
+                    else if(getEvent(&dispenserLightDetected) && !getEventInfo(&ballsFull) )
                     {
                         //update state variable
                         currentState = FACEDISPENSER;
@@ -112,6 +68,10 @@ void caseSwitch()
 
                 }
                 break;
+  
+                
+                
+                
 
             case FACEDISPENSER:
 
@@ -148,6 +108,7 @@ void caseSwitch()
 
                 }
                 break;
+                
             case DRIVETOCORNERQUICK:
 
                 while(1)
@@ -203,7 +164,7 @@ void caseSwitch()
                         //break out of while loop
                         break;
                     }
-                    
+                    /*
                     //check event status
                     else if(getEventStatus(TWOSONICSENSORTHRESHOLDMET) && !getEventStatus(BALLSFULL))
                     {
@@ -230,7 +191,7 @@ void caseSwitch()
                         //break out of the while loop
                         break;
                     }
-
+                */
                 }
                 break;
 
@@ -306,12 +267,13 @@ void caseSwitch()
 
                 }
                 break;
-            case FACEBIN:
+                
+            case WAITFORBINLIGHT:
 
                 while(1)
                 { 
                     //state specific updaters
-                    checkBinLightThresholdMet();
+                    checkLeftIRThresholdMet();
                     checkButtonPressed();
                     
                     if(getEventStatus(BUTTONPRESSED))
