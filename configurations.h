@@ -28,43 +28,43 @@ void configureTimer(int timer, int prescaler)
     {
             case 1:
                 T1CONbits.TON = 1;
-                T1CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
+                T1CONbits.TCKPS = prescaler; 
                 T1CONbits.TCS = 0;  //set timer 1 to internal clock
                 break;
                
             case 2:
                 T2CONbits.TON = 1;
-                T2CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
-                T2CONbits.TCS = 0;  //set timer 1 to internal clock
+                T2CONbits.TCKPS = prescaler; 
+                T2CONbits.TCS = 0;  //set timer 2 to internal clock
                 break;
             case 3:
                 T3CONbits.TON = 1;
-                T3CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
-                T3CONbits.TCS = 0;  //set timer 1 to internal clock
+                T3CONbits.TCKPS = prescaler; 
+                T3CONbits.TCS = 0;  //set timer 3 to internal clock
                 break;
             case 4:
                 T4CONbits.TON = 1;
-                T4CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
-                T4CONbits.TCS = 0;  //set timer 1 to internal clock
+                T4CONbits.TCKPS = prescaler; 
+                T4CONbits.TCS = 0;  //set timer 4 to internal clock
                 break;
             case 5:
                 T5CONbits.TON = 1;
-                T5CONbits.TCKPS = prescaler; //1:8 ratio for timer 1
-                T5CONbits.TCS = 0;  //set timer 1 to internal clock
+                T5CONbits.TCKPS = prescaler; 
+                T5CONbits.TCS = 0;  //set timer 5 to internal clock
                 break;
     }               
 }
 
 void configureTimers()
 {
-    configureTimer(2,PRESCALE_ONE_8);
-    configureTimer(3,PRESCALE_ONE_8);
-    configureTimer(4,PRESCALE_ONE_8);
+    configureTimer(2,PRESCALE_ONE_8);  //Both Motors
+    configureTimer(5,PRESCALE_ONE_256);  //For the timer function
 }
 
 void configureTimerInterrupts()
 {
-    configureTimerXInterrupt(4);
+    configureTimerXInterrupt(2);
+    configureTimerXInterrupt(5);
 }
 
 //Configures the pins to be output or input pins

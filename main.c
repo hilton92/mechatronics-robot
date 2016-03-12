@@ -1,6 +1,6 @@
 
 #include<p24F16KA301.h>
-#include<xc.h>
+//#include<xc.h>
 
 #include"constants.h"
 #include"handlers.h"
@@ -9,6 +9,7 @@
 #include"stateChangers.h"
 #include"motorFunctions.h"
 #include"interrupt.h"
+#include"functions.h"
 
 //-----------------------------------------------------
 // Function STUBS
@@ -18,18 +19,23 @@ int mainTest();
 
 
 
+
 //-----------------------------------------------------
 // Configurations
 // Select oscillator
-_FOSCSEL(FNOSC_FRC);
+
+_FOSCSEL(FNOSC_FRC);// & SOSCSRC_DIG);
 
 _FICD(ICS_PGx3);
+
+//_FOSC(OSCIOFNC_OFF);
 
 
 
 //-----------------------------------------------------
 // Main Function
 
+//global events-  0 or 1 --------------------
 int dispenserLightDetected = 0;
 int dispenserLightThresholdMet = 0;
 int binLightDetected = 0;
@@ -39,11 +45,15 @@ int oneSonicSensorThresholdMet = 0;
 int twoSonicSensorThresholdMet = 0;
 int timer1Met = 0;
 int buttonPressed = 0;
-int ballsFull = 0;
 
-int periodCountLeft = 0;
-int periodCountRight = 0;
+//global no cyclic clearing variables
+int ballsFull = 0;
+int timer5Met = 0;
+
+//global state info variables----------------
+int periodCount = 0;
 int shootTime = 0;
+
 
 int main()
 {
@@ -81,47 +91,27 @@ void mainConfig()
 
 
 
-/////////////////////////Tests
+/////////////////////////---------------------------------------Tests
 
 
 
 void driveToCornerQuickTest();
-void rotate90();
 
 int mainTest()
 {
     
     
     driveToCornerQuickTest();
-    
-    unsigned int i = 0;
-    unsigned int k = 0;
-    while(i < 60000)
-    {
-        i++;
-        while(k < 5)
-        {
-            k++;
-        }
-        k = 0;
-    }
+        
+    delayMS(2000);
  
     setToNullState();  
-    rotate90();
+    rotateXDegrees(180);
     setToNullState();
     driveToCornerQuickTest();
     
-    i = 0;
-    k = 0;
-    while(i < 60000)
-    {
-        i++;
-        while(k < 5)
-        {
-            k++;
-        }
-        k = 0;
-    }
+
+    delayMS(2000);
 
     setToNullState();
 
@@ -136,8 +126,8 @@ void driveToCornerQuickTest()
     setMotorDirection(RIGHT,FORWARD); 
     
      //set motor speed
-    setMotorSpeed(LEFT,MOTORHIGHSPEED);
-    setMotorSpeed(RIGHT, MOTORHIGHSPEED);  
+    setBothMotorSpeeds(MOTORHIGHSPEED);
+
     
     //turn on motors
 //    toggleMotors(LEFT,ON);
@@ -146,27 +136,3 @@ void driveToCornerQuickTest()
 
 }
    
-void rotate90()
-{
-    //set motor direction
-    setMotorDirection(LEFT,BACKWARD);
-    setMotorDirection(RIGHT,FORWARD); 
-    
-     //set motor speed
-    setMotorSpeed(LEFT,MOTORLOWSPEED);
-    setMotorSpeed(RIGHT, MOTORLOWSPEED);  
-    
-    //turn on motors
-//    toggleMotors(LEFT,ON);
-//    toggleMotors(RIGHT,ON); 
-    toggleMotorsOn();
-    
-    //clearEventInfo(PERIODCOUNTRIGHT);
-    periodCountRight = 0;
-    PR4 = MOTORLOWSPEED;
-    while(periodCountRight < 492)
-    {            
-    }
-    
-    int i = 8;
-}

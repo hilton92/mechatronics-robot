@@ -12,17 +12,18 @@
 
 //functions to use----------------------------------------
 void changeToState(unsigned char);
-void nullState();
-void waitForButton();
 void turnFindIR();
 void faceDispenser();
 void driveToCornerQuick();
 void driveIntoCorner();
 void loadBalls();
 void driveToMiddle();
-void faceBin();
-void backUpToShoot();
+void waitForBinLight();
+void faceLeftBinLight();
+void faceRightBinLight();
+void faceFrontBinLight();
 void shootGoals();
+void closeSolenoid();
 void setToNullState();
 
 void changeToState(unsigned char state)
@@ -33,13 +34,9 @@ void changeToState(unsigned char state)
     //reset back to null state
     setToNullState();
     
+    
     switch (state)
     {
-        case WAITFORBUTTON:
-            
-            //enter the state
-            waitForButton();
-            break;
         case TURNFINDIR:
             
             //enter the state
@@ -72,37 +69,48 @@ void changeToState(unsigned char state)
             
             //enter the state
              driveToMiddle();
-            break;    
-         case FACEBIN:
+            break;   
             
+        case WAITFORBINLIGHT:
             //enter the state
-             faceBin();
+            waitForBinLight();
             break;
-        case BACKUPTOSHOOT:
             
+        case FACELEFTBINLIGHT:
             //enter the state
-            backUpToShoot();
+            faceLeftBinLight();
             break;
+            
+        case FACERIGHTBINLIGHT:
+            //enter the state
+            faceRightBinLight();
+            break;
+            
+        case FACEFRONTBINLIGHT:
+            //enter the state
+            faceFrontBinLight();
+            break;
+            
         case SHOOTGOALS:
             //enter the state
             shootGoals();
+            break;
+        
+        case CLOSESOLENOID:
+            //enter the state
+            closeSolenoid();
             break;
             
     }
     
 }
 
-void waitForButton()
-{
-    //reset timers
-    //set or unset certain variables(i.e. ballsLoaded)
-    
-}
+
 
 void turnFindIR()
 {
     //reset timers
-    //set or unset certain variables(i.e. ballsLoaded)
+    //set or unset certain variables(i.e. ballsLoaded, periodCount)
     
 }
 
@@ -141,17 +149,30 @@ void driveToMiddle()
     
 }
 
-void faceBin()
+void waitForBinLight()
 {
     //reset timers
-    //set or unset certain variables(i.e. ballsLoaded)
+    //set or unset certain variables(i.e. ballsLoaded, periodCount)    
+}
+
+void faceLeftBinLight()
+{
+    //reset timers
+    //set or unset certain variables(i.e. ballsLoaded, periodCount)
     
 }
 
-void backUpToShoot()
+void faceRightBinLight()
 {
     //reset timers
-    //set or unset certain variables(i.e. ballsLoaded)
+    //set or unset certain variables(i.e. ballsLoaded, periodCount)
+    
+}
+
+void faceFrontBinLight()
+{
+    //reset timers
+    //set or unset certain variables(i.e. ballsLoaded, periodCount)
     
 }
 
@@ -162,11 +183,19 @@ void shootGoals()
     
 }
 
+void closeSolenoid()
+{
+    //reset timers
+    //set or unset certain variables(i.e. ballsLoaded, periodCount)
+    
+}
+
 void setToNullState()
 {
     //disengage all motors and actuators 
-    toggleMotors(LEFT,OFF);
-    toggleMotors(RIGHT,OFF);   
+//    toggleMotors(LEFT,OFF);
+//    toggleMotors(RIGHT,OFF);   
+    toggleMotorsOff();
 }
 #endif	/* STATECHANGERS_H */
 
