@@ -59,12 +59,14 @@ void configureTimers()
 {
     configureTimer(2,PRESCALE_ONE_8);  //Both Motors
     configureTimer(5,PRESCALE_ONE_256);  //For the timer function
+    configureTimer(3,PRESCALE_ONE_8);  //Turret Motor
 }
 
 void configureTimerInterrupts()
 {
     configureTimerXInterrupt(2);
     configureTimerXInterrupt(5);
+    configureTimerXInterrupt(3);
 }
 
 //Configures the pins to be output or input pins
@@ -78,7 +80,7 @@ void configureIOPins()
     
     //configure motor pins
     configurePWM(2,2,500); //left motor pin 4 RB0 
-    configurePWM(3,3,500); //right motor pin 5 RB1
+    configurePWM(3,3,500); //turret motor pin 5 RB1
     
     toggleMotors(LEFT,OFF);
     toggleMotors(RIGHT,OFF);    

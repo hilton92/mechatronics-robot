@@ -51,7 +51,8 @@ int ballsFull = 0;
 int timer5Met = 0;
 
 //global state info variables----------------
-int periodCount = 0;
+int motorPeriodCount = 0;
+int turretPeriodCount = 0;
 int shootTime = 0;
 
 

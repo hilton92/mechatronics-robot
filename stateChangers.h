@@ -11,94 +11,96 @@
 #define	STATECHANGERS_H
 
 //functions to use----------------------------------------
-void changeToState(unsigned char);
-void turnFindIR();
-void faceDispenser();
-void driveToCornerQuick();
-void driveIntoCorner();
-void loadBalls();
-void driveToMiddle();
-void waitForBinLight();
-void faceLeftBinLight();
-void faceRightBinLight();
-void faceFrontBinLight();
-void shootGoals();
-void closeSolenoid();
+void changeState(unsigned char);
+void turnFindIR(unsigned char);
+void faceDispenser(unsigned char);
+void driveToCornerQuick(unsigned char);
+void driveIntoCorner(unsigned char);
+void loadBalls(unsigned char);
+void driveToMiddle(unsigned char);
+void waitForBinLight(unsigned char);
+void faceLeftBinLight(unsigned char);
+void faceRightBinLight(unsigned char);
+void faceFrontBinLight(unsigned char);
+void shootGoals(unsigned char);
+void closeSolenoid(unsigned char);
 void setToNullState();
 
-void changeToState(unsigned char state)
+void changeState(unsigned char state, unsigned char direction)
 {
-    //reset the events
-    clearEvents();
-    
-    //reset back to null state
-    setToNullState();
-    
+    if(direction == EXIT)
+    {
+        //reset the events
+        clearEvents();
+        
+        //reset back to null state
+        setToNullState();
+    }
     
     switch (state)
     {
         case TURNFINDIR:
             
             //enter the state
-            turnFindIR();
+            turnFindIR(direction);
             break;
         case FACEDISPENSER:
             
             //enter the state
-            faceDispenser();
+            faceDispenser(direction);
             break;
         case DRIVETOCORNERQUICK:
             
             //enter the state
-            driveToCornerQuick();
+            driveToCornerQuick(direction);
             break;
             
         case DRIVEINTOCORNER:
             
             //enter the state
-            driveIntoCorner();
+            driveIntoCorner(direction);
             break;
             
         case LOADBALLS:
            
             //enter the state
-            loadBalls();
+            loadBalls(direction);
             break;
             
          case DRIVETOMIDDLE:
             
             //enter the state
-             driveToMiddle();
+             driveToMiddle(direction);
             break;   
             
         case WAITFORBINLIGHT:
             //enter the state
-            waitForBinLight();
+            waitForBinLight(direction);
             break;
             
         case FACELEFTBINLIGHT:
             //enter the state
-            faceLeftBinLight();
+            faceLeftBinLight(direction);
             break;
             
         case FACERIGHTBINLIGHT:
             //enter the state
-            faceRightBinLight();
+            faceRightBinLight(direction);
             break;
             
         case FACEFRONTBINLIGHT:
             //enter the state
-            faceFrontBinLight();
+            faceFrontBinLight(direction);
             break;
             
         case SHOOTGOALS:
             //enter the state
-            shootGoals();
+            shootGoals(direction);
             break;
         
         case CLOSESOLENOID:
             //enter the state
-            closeSolenoid();
+            closeSolenoid(direction);
             break;
             
     }
@@ -107,87 +109,172 @@ void changeToState(unsigned char state)
 
 
 
-void turnFindIR()
+void turnFindIR(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+
+    }
 }
 
-void faceDispenser()
+void faceDispenser(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    } 
 }
 
-void driveToCornerQuick()
+void driveToCornerQuick(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    } 
 }
 
-void driveIntoCorner()
+void driveIntoCorner(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 
-void loadBalls()
+void loadBalls(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 
-void driveToMiddle()
+void driveToMiddle(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 
-void waitForBinLight()
+void waitForBinLight(unsigned char direction)
 {
     //reset timers
-    //set or unset certain variables(i.e. ballsLoaded, periodCount)    
+    //set or unset certain variables(i.e. ballsLoaded, periodCount) 
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }   
 }
 
-void faceLeftBinLight()
+void faceLeftBinLight(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 
-void faceRightBinLight()
+void faceRightBinLight(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 
-void faceFrontBinLight()
+void faceFrontBinLight(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 
-void shootGoals()
+void shootGoals(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 
-void closeSolenoid()
+void closeSolenoid(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    
+    if(direction == EXIT)
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 
 void setToNullState()
@@ -196,6 +283,7 @@ void setToNullState()
 //    toggleMotors(LEFT,OFF);
 //    toggleMotors(RIGHT,OFF);   
     toggleMotorsOff();
+
 }
 #endif	/* STATECHANGERS_H */
 
