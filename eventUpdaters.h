@@ -23,6 +23,9 @@ void checkBinLightThresholdMet();
 void checkOneSonicSensorThresholdMet();
 void checkTwoSonicSensorThresholdMet();
 void checkButtonPressed();
+void checkLeftBinLightDetected();
+void checkRightBinLightDetected();
+void checkFrontBinLightDetected();
 
 //----------------------------------------------
 
@@ -66,6 +69,20 @@ void checkButtonPressed()
     
 }
 
+void checkLeftBinLightDetected()
+{
+
+}
+
+void checkRightBinLightDetected()
+{
+
+}
+
+void checkFrontBinLightDetected()
+{
+	
+}
 
 
 #endif	/* EVENTUPDATERS_H */
