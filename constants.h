@@ -40,9 +40,9 @@ const unsigned char PRESCALE_ONE_8 = 0b01;
 const unsigned char PRESCALE_ONE_1 = 0b00;
 const int MOTORLOWSPEED = 1300; //period for motors
 const int MOTORHIGHSPEED = 600; //period for motors
-const int TURRETSPEED = 1600; //turret speed 
+const int TURRETSPEED = 1000; //turret speed 
 const unsigned int QUARTERTURNCOUNT = 492;
-const unsigned int DRIVETOMIDDLECOUNT = 5000;
+const unsigned int DRIVETOMIDDLECOUNT = 2112;
 
 #endif	/* ENUMS_H */
 

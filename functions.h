@@ -30,7 +30,7 @@ void delayMS(int miliseconds) //max of 4 seconds!!!
     setLow(&timer5Met);
 }
 
-void rotateTurret(double degree)
+void rotateTurret(double degree, int direction)
 {
     //toggleMotorsOff();
     
@@ -58,7 +58,7 @@ void rotateTurret(double degree)
 
     
 	//rotate left
-	if(degree < 0)
+	if(direction == LEFT )
 	{
         _LATB9 = 1;
 	}
@@ -71,7 +71,7 @@ void rotateTurret(double degree)
     
       
      //convert degree to counts   
-    int count = ((degree * degree )/ degree ) / 0.45;
+    int count = (int) (degree  / 0.05625);
     
     // set the speed
     setTurretSpeed(TURRETSPEED);   
@@ -79,7 +79,7 @@ void rotateTurret(double degree)
     // toggle motors on
     toggleOnTurret();
     
-    while(motorPeriodCount < count)
+    while(turretPeriodCount < count)
     {          
     }   
     

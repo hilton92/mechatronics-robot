@@ -62,7 +62,7 @@ int shootTime = 0;
 
 int main()
 {
-    int testing = 1;
+    int testing = 0;
     
     if(testing)
     {
@@ -108,19 +108,20 @@ void testIRSensors();
 int mainTest()
 {
     
-    testIRSensors();
-    /*driveToCornerQuickTest();
-        
-    delayMS(2000);
- 
-    setToNullState();  
-    rotateXDegrees(180);
-    setToNullState();
-    driveToCornerQuickTest();
-    
+    //testIRSensors();
+//    driveToCornerQuickTest();
+//        
+//    delayMS(2000);
+// 
+//    setToNullState();  
+//    rotateXDegrees(180);
+//    setToNullState();
+//    driveToCornerQuickTest();
+//    
+//
+//    delayMS(2000);
 
-    delayMS(2000);*/
-
+    rotateTurret(90, LEFT);
     setToNullState();
 
     return 0;
@@ -154,4 +155,6 @@ void driveToCornerQuickTest()
     toggleMotorsOn();
 
 }
+
+
    

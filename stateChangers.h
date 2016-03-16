@@ -6,6 +6,7 @@
  */
 #include "handlers.h"
 #include "motorFunctions.h"
+#include "functions.h"
 
 #ifndef STATECHANGERS_H
 #define	STATECHANGERS_H
@@ -185,11 +186,11 @@ void driveToMiddle(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == EXIT)
     {
-
+        rotateTurret(90, LEFT);
     }
     else
     {
-        
+        driveStraight(MOTORLOWSPEED,BACKWARD);
     }
 }
 
@@ -203,7 +204,7 @@ void waitForBinLight(unsigned char direction)
     }
     else
     {
-        
+        //rotateTurret(90, LEFT);
     }   
 }
 

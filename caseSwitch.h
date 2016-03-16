@@ -53,6 +53,7 @@ void caseSwitch()
                         changeState(FACEDISPENSER, ENTER);
 
                         //break out of the while loop
+                        
                         break;
                     }
 
