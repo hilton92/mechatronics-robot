@@ -77,13 +77,14 @@ void configureIOPins()
     
     _TRISA0 = 0; //left motor direction pin 2
     _TRISA1 = 0; //right motor direction pin 3
+    _TRISB9 = 0; //turret direction pin 13
     
     //configure motor pins
     configurePWM(2,2,500); //left motor pin 4 RB0 
     configurePWM(3,3,500); //turret motor pin 5 RB1
     
-    toggleMotors(LEFT,OFF);
-    toggleMotors(RIGHT,OFF);    
+//    toggleMotors(LEFT,OFF);
+//    toggleMotors(RIGHT,OFF);    
     
     //Configure the analog pins for IR
     chooseADpin(9);

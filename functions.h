@@ -13,6 +13,9 @@
 
 //function prototypes
 void delayMS(int);
+void toggleOnTurret();
+void toggleOffTurret();
+void setTurretSpeed();
 
 void delayMS(int miliseconds) //max of 4 seconds!!!
 {
@@ -27,46 +30,77 @@ void delayMS(int miliseconds) //max of 4 seconds!!!
     setLow(&timer5Met);
 }
 
-void rotateTurret(int degree)
+void rotateTurret(double degree)
 {
-    toggleMotorsOff();
+    //toggleMotorsOff();
+    
+    // turn motors off
+    toggleOffTurret();
     
     //set motor direction
-    setMotorDirection(LEFT,BACKWARD);
-    setMotorDirection(RIGHT,FORWARD); 
+//    setMotorDirection(LEFT,BACKWARD);
+//    setMotorDirection(RIGHT,FORWARD); 
     
      //set motor speeds
 //    setMotorSpeed(LEFT,MOTORLOWSPEED);
 //    setMotorSpeed(RIGHT, MOTORLOWSPEED);  
-    setBothMotorSpeeds(MOTORLOWSPEED);
+  //  setBothMotorSpeeds(MOTORLOWSPEED);
     
     //turn on motors
 //    toggleMotors(LEFT,ON);
 //    toggleMotors(RIGHT,ON); 
-    toggleMotorsOn();
+   // toggleMotorsOn();
     
     //clearEventInfo(PERIODCOUNTRIGHT);
-    setLow(&periodCount);
+    setLow(&turretPeriodCount);
     //PR4 = MOTORLOWSPEED;
     
-    //convert degree to counts
-    int count = QUARTERTURNCOUNT/90.0 * degree;
-    
-    while(motorPeriodCount < count)
-    {          
-    }
+
     
 	//rotate left
 	if(degree < 0)
 	{
-
+        _LATB9 = 1;
 	}
 
 	//rotate right
 	else
 	{
-
+        _LATB9 = 0;
 	}
+    
+      
+     //convert degree to counts   
+    int count = ((degree * degree )/ degree ) / 0.45;
+    
+    // set the speed
+    setTurretSpeed(TURRETSPEED);   
+    
+    // toggle motors on
+    toggleOnTurret();
+    
+    while(motorPeriodCount < count)
+    {          
+    }   
+    
+    // toggle motors off
+    toggleOffTurret();
+    
+}
+
+void toggleOnTurret()
+{
+    OC3R = 100;
+}
+
+void toggleOffTurret()
+{
+    OC3R = 0;
+}
+
+void setTurretSpeed(unsigned int speed)
+{
+    PR3 = speed;
 }
 
 #endif	/* FUNCTIONS_H */

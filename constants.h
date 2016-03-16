@@ -31,7 +31,7 @@ enum {BACKWARD, FORWARD};
 
 enum {OFF, ON};
 
-enum {ENTER, EXIT}
+enum {ENTER, EXIT};
 
 //global constants
 const unsigned char PRESCALE_ONE_256 = 0b11;
@@ -40,6 +40,7 @@ const unsigned char PRESCALE_ONE_8 = 0b01;
 const unsigned char PRESCALE_ONE_1 = 0b00;
 const int MOTORLOWSPEED = 1300; //period for motors
 const int MOTORHIGHSPEED = 600; //period for motors
+const int TURRETSPEED = 1600; //turret speed 
 const unsigned int QUARTERTURNCOUNT = 492;
 const unsigned int DRIVETOMIDDLECOUNT = 5000;
 

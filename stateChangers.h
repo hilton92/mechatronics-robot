@@ -11,7 +11,7 @@
 #define	STATECHANGERS_H
 
 //functions to use----------------------------------------
-void changeState(unsigned char);
+void changeState(unsigned char, unsigned char);
 void turnFindIR(unsigned char);
 void faceDispenser(unsigned char);
 void driveToCornerQuick(unsigned char);
@@ -283,6 +283,7 @@ void setToNullState()
 //    toggleMotors(LEFT,OFF);
 //    toggleMotors(RIGHT,OFF);   
     toggleMotorsOff();
+    
 
 }
 #endif	/* STATECHANGERS_H */

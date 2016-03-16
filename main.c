@@ -45,6 +45,10 @@ int oneSonicSensorThresholdMet = 0;
 int twoSonicSensorThresholdMet = 0;
 int timer1Met = 0;
 int buttonPressed = 0;
+int leftBinLightDetected = 0;
+int rightBinLightDetected = 0;
+int frontBinLightDetected = 0;
+
 
 //global no cyclic clearing variables
 int ballsFull = 0;
@@ -87,6 +91,7 @@ void mainConfig()
     configureIOPins();   
     configureTimers();
     configureTimerInterrupts();
+    setToNullState();
 }
 
 
@@ -122,12 +127,16 @@ int mainTest()
 }
 
 
-void testIRSensors(){
+void testIRSensors()
+{
    
-    while(ADC1BUF11 < 2000){
+    while(ADC1BUF11 < 2000)
+    {
         rotateXDegrees(2);
         delayMS(300);
     }
+}
+    
 void driveToCornerQuickTest()
 {
    
