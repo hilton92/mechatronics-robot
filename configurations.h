@@ -154,43 +154,43 @@ void chooseADpin(int pin)
                _CSS1 = 1;
                break;
             case 4: //AN2 pin 4
-                _ANSA2 = 1;
+                _ANSB0 = 1;
                _CSS2 = 1;
                break;
             case 5: //AN3 pin 5
-                _ANSA3 = 1;
+                _ANSB1 = 1;
                _CSS3 = 1;
                break;
             case 6: //AN4 pin 6
-                _ANSA4 = 1;
+                _ANSB2 = 1;
                _CSS4 = 1;
                break;
             case 18: //AN9 pin 18
-                _ANSA9 = 1;
+                _ANSB15 = 1;
                _CSS9 = 1;
                break;
             case 17:  //AN10 pin 17
-                _ANSA10 = 1;
+                _ANSB14 = 1;
                _CSS10 = 1;
                break;
             case 16:  //AN11 pin 16
-                _ANSA11 = 1;
+                _ANSB13 = 1;
                _CSS11 = 1;
                break;
             case 15: //AN12 pin 15
-                _ANSA12 = 1;
+                _ANSB12 = 1;
                _CSS12 = 1;
                break;
             case 7: //AN13 pin 7
-                _ANSA13 = 1;
+                _ANSA2 = 1;
                _CSS13 = 1;
                break;
             case 8: //AN14 pin 8
-                _ANSA14 = 1;
+                _ANSA3 = 1;
                _CSS14 = 1;
                break;
             case 9: //AN15 pin 9
-                _ANSA15 = 1;
+                _ANSB4 = 1;
                _CSS15 = 1;
                break;
     }
