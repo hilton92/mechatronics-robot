@@ -23,7 +23,7 @@ void caseSwitch()
     static unsigned char currentState = DRIVETOMIDDLE;
     
     //initialize state
-    //changeToState(WAITFORBUTTON);
+   changeToState(DRIVETOMIDDLE);
     
     while(1)
     {
@@ -37,34 +37,38 @@ void caseSwitch()
                 { 
                     //state specific updaters
                     checkDispenserLightDetected();
-                    checkBinLightDetected();                   
+                    // checkBinLightDetected();                   
                     
                     //check event status
                     if(getEvent(&dispenserLightDetected) && !getEventInfo(&ballsFull) )
                     {
+
+                        //exit the state
+                        changeState(TURNFINDIR, EXIT);
+
                         //update state variable
                         currentState = FACEDISPENSER;
 
                         //change to the state
-                        changeToState(FACEDISPENSER);
+                        changeState(FACEDISPENSER, ENTER);
 
                         //break out of the while loop
                         break;
                     }
 
-                    //check other state specific events
-                    else if(getEvent() && getEventStatus(BALLSFULL))
-                    {
-
-                        //update state variable
-                        currentState = FACEBIN;
-
-                        //change to the state
-                        changeToState(FACEBIN);
-
-                        //break out of the while loop
-                        break;
-                    }
+//                    //check other state specific events
+//                    else if(getEvent(&binLightDetected) && getEventInfo(&ballsFull))
+//                    {
+//
+//                        //update state variable
+//                        currentState = FACEBIN;
+//
+//                        //change to the state
+//                        changeToState(FACEBIN);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
 
                 }
                 break;
@@ -78,33 +82,33 @@ void caseSwitch()
                 while(1)
                 { 
                     //state specific updaters
-                    checkDispenserLightThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
+//                    checkDispenserLightThresholdMet();
+//                    checkButtonPressed();
+//                    
+//                    if(getEventStatus(BUTTONPRESSED))
+//                    {
+//                        //update state variable
+//                        currentState = WAITFORBUTTON;
+//                        
+//                        //change to the state
+//                        changeToState(WAITFORBUTTON);
+//                        
+//                        //break out of while loop
+//                        break;
+//                    }
                     
                     //check event status
-                    else if(getEventStatus(DISPENSERLIGHTTHRESHOLDMET) == 1)
-                    {
-                        //update state variable
-                        currentState = DRIVETOCORNERQUICK;
-
-                        //change to the state
-                        changeToState(DRIVETOCORNERQUICK);
-
-                        //break out of the while loop
-                        break;
-                    }
+//                    if(getEventStatus(DISPENSERLIGHTTHRESHOLDMET) == 1)
+//                    {
+//                        //update state variable
+//                        currentState = DRIVETOCORNERQUICK;
+//
+//                        //change to the state
+//                        changeToState(DRIVETOCORNERQUICK);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
 
                 }
                 break;
@@ -115,32 +119,20 @@ void caseSwitch()
                 { 
                     //state specific updaters
                     checkOneSonicSensorThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(ONESONICSENSORTHRESHOLDMET))
-                    {
-                        //update state variable
-                        currentState = DRIVEINTOCORNER;
 
-                        //change to the state
-                        changeToState(DRIVEINTOCORNER);
-
-                        //break out of the while loop
-                        break;
-                    }
+                    
+//                    //check event status
+//                    if(getEventStatus(ONESONICSENSORTHRESHOLDMET))
+//                    {
+//                        //update state variable
+//                        currentState = DRIVEINTOCORNER;
+//
+//                        //change to the state
+//                        changeToState(DRIVEINTOCORNER);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
 
                 }
                 break;
@@ -151,19 +143,7 @@ void caseSwitch()
                 { 
                     //state specific updaters
                     checkTwoSonicSensorThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
+
                     /*
                     //check event status
                     else if(getEventStatus(TWOSONICSENSORTHRESHOLDMET) && !getEventStatus(BALLSFULL))
@@ -202,26 +182,16 @@ void caseSwitch()
                 { 
                     checkButtonPressed();
                     
-                    if(getEventStatus(BUTTONPRESSED))
+                    if(getEventStatus(TIMER1MET) )
                     {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(TIMER1MET) )
-                    {
+                        // exit the state
+                        changeState(LOADBALLS, EXIT);
+
                         //update state variable
                         currentState = DRIVETOMIDDLE;
 
                         //change to the state
-                        changeToState(DRIVETOMIDDLE);
+                        changeState(DRIVETOMIDDLE, ENTER);
 
                         //break out of the while loop
                         break;
@@ -235,29 +205,20 @@ void caseSwitch()
             case DRIVETOMIDDLE:
 
                 while(1)
-                { 
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
+                {       
+                    //state specific updaters
+
+                    // check event status
+                    if(getEventInfo(motorPeriodCount) > DRIVETOMIDDLECOUNT)
                     {
+                        //exit the state
+                        changeState(DRIVETOMIDDLE, EXIT)
+
                         //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
-                    //check event status
-                    else if(getEventStatus(TIMER1MET))
-                    {
-                        //update state variable
-                        currentState = TURNFINDIR;
+                        currentState = WAITFORBINLIGHT;
 
                         //change to the state
-                        changeToState(TURNFINDIR);
+                        changeState(WAITFORBINLIGHT, ENTER);
 
                         //break out of the while loop
                         break;
@@ -273,29 +234,21 @@ void caseSwitch()
                 while(1)
                 { 
                     //state specific updaters
-                    checkLeftIRThresholdMet();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
+                    checkLeftBinLightDetected();
+                    checkRightBinLightDetected();
+                    checkFrontBinLightDectected();
                     
                     //check event status
-                    else if(getEventStatus(BINLIGHTTHRESHOLDMET) == 1)
+                    if(getEventStatus(BINLIGHTTHRESHOLDMET) == 1)
                     {
+                        //exit the state
+                        changeState(WAITFORBINLIGHT, EXIT);
+
                         //update state variable
                         currentState = DRIVETOCORNERQUICK;
 
                         //change to the state
-                        changeToState(DRIVETOCORNERQUICK);
+                        changeState(DRIVETOCORNERQUICK, ENTER);
 
                         //break out of the while loop
                         break;
@@ -316,11 +269,14 @@ void caseSwitch()
                     
                     if(getEventStatus(BUTTONPRESSED))
                     {
+                        //exit the state
+                        changeState(BACKUPTOSHOOT, EXIT);
+
                         //update state variable
                         currentState = WAITFORBUTTON;
                         
                         //change to the state
-                        changeToState(WAITFORBUTTON);
+                        changeState(WAITFORBUTTON. ENTER);
                         
                         //break out of while loop
                         break;
@@ -329,11 +285,14 @@ void caseSwitch()
                     //check event status
                     else if(getEventStatus(BUTTONPRESSED) == 1)
                     {
+                        //exit the state
+                        changeState(BACKUPTOSHOOT, EXIT);
+
                         //update state variable
                         currentState = TURNFINDIR;
 
                         //change to the state
-                        changeToState(TURNFINDIR);
+                        changeToState(TURNFINDIR, ENTER);
 
                         //break out of the while loop
                         break;
@@ -349,28 +308,18 @@ void caseSwitch()
                 { 
                     //state specific updaters
                     checkBinLightNotDetected();
-                    checkButtonPressed();
-                    
-                    if(getEventStatus(BUTTONPRESSED))
-                    {
-                        //update state variable
-                        currentState = WAITFORBUTTON;
-                        
-                        //change to the state
-                        changeToState(WAITFORBUTTON);
-                        
-                        //break out of while loop
-                        break;
-                    }
-                    
+
                     //check event status
-                    else if(getEventStatus(BINLIGHTNOTDETECTED) || !getEventStatus(BALLSFULL))
+                    if(getEventStatus(BINLIGHTNOTDETECTED) || !getEventStatus(BALLSFULL))
                     {
+                        //exit the state
+                        changeState(SHOOTGOALS, EXIT);
+
                         //update state variable
                         currentState = DRIVETOMIDDLE;
 
                         //change to the state
-                        changeToState(DRIVETOMIDDLE);
+                        changeState(DRIVETOMIDDLE, ENTER);
 
                         //break out of the while loop
                         break;

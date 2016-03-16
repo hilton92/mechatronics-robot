@@ -46,7 +46,8 @@ extern int buttonPressed;
 extern int ballsFull;
 
 //event info variables
-extern int periodCount;
+extern int motorPeriodCount;
+extern int turretPeriodCount;
 extern int shootTime;
 extern int timer5Met;
  

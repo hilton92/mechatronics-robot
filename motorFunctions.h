@@ -10,9 +10,9 @@
 #ifndef MOTORFUNCTIONS_H
 #define	MOTORFUNCTIONS_H
 
-void toggleMotors(unsigned char, int);
+//void toggleMotors(unsigned char, int);
 void setMotorDirection(unsigned char, int);
-void setMotorSpeed(unsigned char, int);
+//void setMotorSpeed(unsigned char, int);
 void toggleMotorsOn();
 void toggleMotorsOff();
 void setBothMotorSpeeds(int);
@@ -106,13 +106,13 @@ void rotateXDegrees(int degree)
     toggleMotorsOn();
     
     //clearEventInfo(PERIODCOUNTRIGHT);
-    setLow(&periodCount);
+    setLow(&motorPeriodCount);
     //PR4 = MOTORLOWSPEED;
     
     //convert degree to counts
     int count = QUARTERTURNCOUNT/90.0 * degree;
     
-    while(periodCount < count)
+    while(motorPeriodCount < count)
     {          
     }
     

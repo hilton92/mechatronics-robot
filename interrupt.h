@@ -28,7 +28,7 @@ void __attribute__((interrupt, no_auto_psv)) _T2Interrupt(void)
     // PLACE CODE TO CLEAR THE TIMER1 INTERRUPT FLAG HERE
     _T2IF = 0;
     TMR2 = 0;
-    periodCount++;
+    motorPeriodCount++;
 }
 
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void)
@@ -39,7 +39,7 @@ void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void)
     // PLACE CODE TO CLEAR THE TIMER1 INTERRUPT FLAG HERE
     _T3IF = 0;
     TMR3 = 0;
-
+    turretPeriodCount++;
 }
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void)
