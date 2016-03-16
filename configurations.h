@@ -83,6 +83,11 @@ void configureIOPins()
     toggleMotors(LEFT,OFF);
     toggleMotors(RIGHT,OFF);    
     
+    //Configure the analog pins for IR
+    chooseADpin(9);
+    chooseADpin(10);
+    chooseADpin(11);
+    chooseADpin(12);
   
 }
 
@@ -143,36 +148,47 @@ void chooseADpin(int pin)
                _CSS0 = 1;
                break;
             case 3: //AN1 pin 3
+                _ANSA1 = 1;
                _CSS1 = 1;
                break;
-            case 4: //AN2 pin 4   
+            case 4: //AN2 pin 4
+                _ANSA2 = 1;
                _CSS2 = 1;
                break;
-            case 5: //AN3 pin 5     
+            case 5: //AN3 pin 5
+                _ANSA3 = 1;
                _CSS3 = 1;
                break;
-            case 6: //AN4 pin 6    
+            case 6: //AN4 pin 6
+                _ANSA4 = 1;
                _CSS4 = 1;
                break;
-            case 18: //AN9 pin 18    
+            case 18: //AN9 pin 18
+                _ANSA9 = 1;
                _CSS9 = 1;
                break;
-            case 17:  //AN10 pin 17    
+            case 17:  //AN10 pin 17
+                _ANSA10 = 1;
                _CSS10 = 1;
                break;
-            case 16:  //AN11 pin 16 
+            case 16:  //AN11 pin 16
+                _ANSA11 = 1;
                _CSS11 = 1;
                break;
-            case 15: //AN12 pin 15 
+            case 15: //AN12 pin 15
+                _ANSA12 = 1;
                _CSS12 = 1;
                break;
-            case 7: //AN13 pin 7           
+            case 7: //AN13 pin 7
+                _ANSA13 = 1;
                _CSS13 = 1;
                break;
-            case 8: //AN14 pin 8   
+            case 8: //AN14 pin 8
+                _ANSA14 = 1;
                _CSS14 = 1;
                break;
-            case 9: //AN15 pin 9   
+            case 9: //AN15 pin 9
+                _ANSA15 = 1;
                _CSS15 = 1;
                break;
     }
