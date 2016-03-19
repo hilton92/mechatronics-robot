@@ -69,6 +69,9 @@ void clearEvents()
     oneSonicSensorThresholdMet = 0;
     twoSonicSensorThresholdMet = 0;
     timer1Met = 0;
+    leftBinLightDetected = 0;
+    rightBinLightDetected = 0;
+    frontBinLightDetected = 0;
 }
 
 

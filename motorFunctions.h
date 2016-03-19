@@ -131,5 +131,27 @@ void driveStraight(int speed, int direction)
     toggleMotorsOn();
 }
 
+void turn(int speed, int direction)
+{
+    if(direction == LEFT)
+    {
+        //set motor direction
+        setMotorDirection(LEFT,LEFT);
+        setMotorDirection(RIGHT,RIGHT); 
+    }
+    else if(direction == RIGHT)
+    {
+        //set motor direction
+        setMotorDirection(LEFT,RIGHT);
+        setMotorDirection(RIGHT,LEFT); 
+    }
+    
+    //set motor speed
+    setBothMotorSpeeds(speed);
+    
+    //turn on motors
+    toggleMotorsOn();
+}
+
 #endif	/* MOTORFUNCTIONS_H */
 

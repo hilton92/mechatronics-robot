@@ -10,6 +10,7 @@
 //---------on off button and timer 1 are the only interrupts!!
 //Must close the ball drop pin when entering other states
 
+#include "constants.h"
 
 #ifndef EVENTUPDATERS_H
 #define	EVENTUPDATERS_H
@@ -69,20 +70,33 @@ void checkButtonPressed()
     
 }
 
-void checkLeftBinLightDetected()
+void checkFrontBinLightDetected()
 {
-
+    if(readAD(16) > IRBINTHRESHOLD)
+    {
+        setHigh(&frontBinLightDetected&);
+    }
 }
 
 void checkRightBinLightDetected()
 {
-
+    if(readAD(17) > IRBINTHRESHOLD)
+    {
+        setHigh(&rightBinLightDetected&);
+    }
 }
 
-void checkFrontBinLightDetected()
+void checkLeftBinLightDetected()
 {
-	
+    if(readAD(18) > IRBINTHRESHOLD)
+    {
+        setHigh(&leftBinLightDetected&);
+    }
 }
+
+
+
+
 
 
 #endif	/* EVENTUPDATERS_H */

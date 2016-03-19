@@ -62,12 +62,12 @@ int shootTime = 0;
 
 int main()
 {
-    int testing = 0;
+    int testing = 1;
     
     if(testing)
     {
-        mainConfig();
-        mainTest();
+//        mainConfig();
+//        mainTest();
         while(1);
     }
     

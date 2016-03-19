@@ -7,6 +7,7 @@
 #include "handlers.h"
 #include "motorFunctions.h"
 #include "functions.h"
+#include "turretFunctions.h"
 
 #ifndef STATECHANGERS_H
 #define	STATECHANGERS_H
@@ -114,7 +115,7 @@ void turnFindIR(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }
@@ -128,7 +129,7 @@ void faceDispenser(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }
@@ -142,7 +143,7 @@ void driveToCornerQuick(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }
@@ -156,7 +157,7 @@ void driveIntoCorner(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }
@@ -170,7 +171,7 @@ void loadBalls(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }
@@ -184,13 +185,13 @@ void driveToMiddle(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
-        rotateTurret(90, LEFT);
+        driveStraight(MOTORLOWSPEED,BACKWARD);      
     }
     else
     {
-        driveStraight(MOTORLOWSPEED,BACKWARD);
+        rotateTurret(185, LEFT);
     }
 }
 
@@ -198,7 +199,7 @@ void waitForBinLight(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount) 
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }
@@ -212,13 +213,13 @@ void faceLeftBinLight(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
-
+        rotateTurret(90,LEFT);
     }
     else
     {
-        
+        rotateTurret(90,RIGHT);
     }
 }
 
@@ -226,13 +227,13 @@ void faceRightBinLight(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
-
+        rotateTurret(90,RIGHT);
     }
     else
     {
-        
+        rotateTurret(90,LEFT);
     }
 }
 
@@ -240,7 +241,7 @@ void faceFrontBinLight(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }
@@ -254,7 +255,7 @@ void shootGoals(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }
@@ -268,7 +269,7 @@ void closeSolenoid(unsigned char direction)
 {
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
-    if(direction == EXIT)
+    if(direction == ENTER)
     {
 
     }

@@ -87,10 +87,10 @@ void configureIOPins()
 //    toggleMotors(RIGHT,OFF);    
     
     //Configure the analog pins for IR
-    chooseADpin(9);
-    chooseADpin(10);
-    chooseADpin(11);
-    chooseADpin(12);
+    chooseADpin(15);
+    chooseADpin(16);
+    chooseADpin(17);
+    chooseADpin(18);
   
 }
 

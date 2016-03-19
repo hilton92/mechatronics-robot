@@ -242,47 +242,47 @@ void caseSwitch()
                     //check event status
                     if(getEventInfo(&leftBinLightDetected) == 1)
                     {
-//                        //exit the state
-//                        changeState(WAITFORBINLIGHT, EXIT);
-//
-//                        //update state variable
-//                        currentState = DRIVETOCORNERQUICK;
-//
-//                        //change to the state
-//                        changeState(DRIVETOCORNERQUICK, ENTER);
-//
-//                        //break out of the while loop
-//                        break;
+                        //exit the state
+                        changeState(WAITFORBINLIGHT, EXIT);
+
+                        //update state variable
+                        currentState = FACELEFTBINLIGHT;
+
+                        //change to the state
+                        changeState(FACELEFTBINLIGHT, ENTER);
+
+                        //break out of the while loop
+                        break;
                     }
                     
                     else if(getEventInfo(&rightBinLightDetected) == 1)
                     {
-//                        //exit the state
-//                        changeState(WAITFORBINLIGHT, EXIT);
-//
-//                        //update state variable
-//                        currentState = DRIVETOCORNERQUICK;
-//
-//                        //change to the state
-//                        changeState(DRIVETOCORNERQUICK, ENTER);
-//
-//                        //break out of the while loop
-//                        break;
+                        //exit the state
+                        changeState(WAITFORBINLIGHT, EXIT);
+
+                        //update state variable
+                        currentState = FACERIGHTBINLIGHT;
+
+                        //change to the state
+                        changeState(FACERIGHTBINLIGHT, ENTER);
+
+                        //break out of the while loop
+                        break;
                     }
                     
                     else if (getEventInfo(&frontBinLightDetected) == 1)
                     {
-//                        //exit the state
-//                        changeState(WAITFORBINLIGHT, EXIT);
-//
-//                        //update state variable
-//                        currentState = DRIVETOCORNERQUICK;
-//
-//                        //change to the state
-//                        changeState(DRIVETOCORNERQUICK, ENTER);
-//
-//                        //break out of the while loop
-//                        break;
+                        //exit the state
+                        changeState(WAITFORBINLIGHT, EXIT);
+
+                        //update state variable
+                        currentState = FACEFRONTBINLIGHT;
+
+                        //change to the state
+                        changeState(FACEFRONTBINLIGHT, ENTER);
+
+                        //break out of the while loop
+                        break;
                     }
 
 
