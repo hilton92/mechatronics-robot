@@ -16,7 +16,7 @@ void configureEvents();
 void chooseADpin(int pin);
 void configureAD();
 void configurePWM(int ocx, int timer, int period);
-float readAD(int pin); //reads in value from 0 to 3.3 volts
+//float readAD(int pin); //reads in value from 0 to 3.3 volts
 void configureTimerXInterrupt(int timer);
 void configureTimer(int timer, int perscaler);
 //---------------
@@ -78,6 +78,7 @@ void configureIOPins()
     _TRISA0 = 0; //left motor direction pin 2
     _TRISA1 = 0; //right motor direction pin 3
     _TRISB9 = 0; //turret direction pin 13
+    _TRISB7 = 1; //front bumper buttons
     
     //configure motor pins
     configurePWM(2,2,500); //left motor pin 4 RB0 
@@ -308,50 +309,7 @@ void configurePWM(int ocx, int timer, int period)
                         
 }
 
-float readAD(int pin)
-{
-    float voltage;
-    switch(pin)
-    {
-            case 2: //AN0 pin 2
-              voltage = (float)ADC1BUF0 / 4095 * 3.3;
-               break;
-            case 3: //AN1 pin 3
-               voltage = (float)ADC1BUF1 / 4095 * 3.3; 
-               break;
-            case 4: //AN2 pin 4   
-               voltage = (float)ADC1BUF2 / 4095 * 3.3;
-               break;
-            case 5: //AN3 pin 5     
-               voltage = (float)ADC1BUF3 / 4095 * 3.3;
-               break;
-            case 6: //AN4 pin 6    
-               voltage = (float)ADC1BUF4 / 4095 * 3.3;
-               break;
-            case 18: //AN9 pin 18    
-               voltage = (float)ADC1BUF9 / 4095 * 3.3;
-               break;
-            case 17:  //AN10 pin 17    
-               voltage = (float)ADC1BUF10 / 4095 * 3.3;
-               break;
-            case 16:  //AN11 pin 16 
-               voltage = (float)ADC1BUF11 / 4095 * 3.3;
-               break;
-            case 15: //AN12 pin 15 
-               voltage = (float)ADC1BUF12 / 4095 * 3.3;
-               break;
-            case 7: //AN13 pin 7           
-               voltage = (float)ADC1BUF13 / 4095 * 3.3;
-               break;
-            case 8: //AN14 pin 8   
-               voltage = (float)ADC1BUF14 / 4095 * 3.3;
-               break;
-            case 9: //AN15 pin 9   
-               voltage = (float)ADC1BUF15 / 4095 * 3.3;
-               break;
-    }
-    return voltage;
-}
+
 
 void configureEvents()
 {
