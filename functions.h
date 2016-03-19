@@ -14,6 +14,7 @@
 //function prototypes
 void delayMS(int);
 
+
 void delayMS(int miliseconds) //max of 4 seconds!!!
 {
     
@@ -27,47 +28,7 @@ void delayMS(int miliseconds) //max of 4 seconds!!!
     setLow(&timer5Met);
 }
 
-void rotateTurret(int degree)
-{
-    toggleMotorsOff();
-    
-    //set motor direction
-    setMotorDirection(LEFT,BACKWARD);
-    setMotorDirection(RIGHT,FORWARD); 
-    
-     //set motor speeds
-//    setMotorSpeed(LEFT,MOTORLOWSPEED);
-//    setMotorSpeed(RIGHT, MOTORLOWSPEED);  
-    setBothMotorSpeeds(MOTORLOWSPEED);
-    
-    //turn on motors
-//    toggleMotors(LEFT,ON);
-//    toggleMotors(RIGHT,ON); 
-    toggleMotorsOn();
-    
-    //clearEventInfo(PERIODCOUNTRIGHT);
-    setLow(&periodCount);
-    //PR4 = MOTORLOWSPEED;
-    
-    //convert degree to counts
-    int count = QUARTERTURNCOUNT/90.0 * degree;
-    
-    while(motorPeriodCount < count)
-    {          
-    }
-    
-	//rotate left
-	if(degree < 0)
-	{
 
-	}
-
-	//rotate right
-	else
-	{
-
-	}
-}
 
 #endif	/* FUNCTIONS_H */
 

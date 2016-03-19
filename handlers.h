@@ -44,6 +44,9 @@ extern int twoSonicSensorThresholdMet;
 extern int timer1Met;
 extern int buttonPressed;
 extern int ballsFull;
+extern int leftBinLightDetected;
+extern int rightBinLightDetected;
+extern int frontBinLightDetected;
 
 //event info variables
 extern int motorPeriodCount;
@@ -66,13 +69,17 @@ void clearEvents()
     oneSonicSensorThresholdMet = 0;
     twoSonicSensorThresholdMet = 0;
     timer1Met = 0;
+    leftBinLightDetected = 0;
+    rightBinLightDetected = 0;
+    frontBinLightDetected = 0;
 }
 
 
 void clearEventInfo()
 {
     shootTime = 0;
-    periodCount = 0;
+    motorPeriodCount = 0;
+    turretPeriodCount = 0;
 }
 
 void initializeEvents()

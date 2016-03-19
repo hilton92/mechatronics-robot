@@ -45,6 +45,10 @@ int oneSonicSensorThresholdMet = 0;
 int twoSonicSensorThresholdMet = 0;
 int timer1Met = 0;
 int buttonPressed = 0;
+int leftBinLightDetected = 0;
+int rightBinLightDetected = 0;
+int frontBinLightDetected = 0;
+
 
 //global no cyclic clearing variables
 int ballsFull = 0;
@@ -62,8 +66,8 @@ int main()
     
     if(testing)
     {
-        mainConfig();
-        mainTest();
+//        mainConfig();
+//        mainTest();
         while(1);
     }
     
@@ -87,6 +91,7 @@ void mainConfig()
     configureIOPins();   
     configureTimers();
     configureTimerInterrupts();
+    setToNullState();
 }
 
 
@@ -103,31 +108,36 @@ void testIRSensors();
 int mainTest()
 {
     
-    testIRSensors();
-    /*driveToCornerQuickTest();
-        
-    delayMS(2000);
- 
-    setToNullState();  
-    rotateXDegrees(180);
-    setToNullState();
-    driveToCornerQuickTest();
-    
+    //testIRSensors();
+//    driveToCornerQuickTest();
+//        
+//    delayMS(2000);
+// 
+//    setToNullState();  
+//    rotateXDegrees(180);
+//    setToNullState();
+//    driveToCornerQuickTest();
+//    
+//
+//    delayMS(2000);
 
-    delayMS(2000);*/
-
+    rotateTurret(90, LEFT);
     setToNullState();
 
     return 0;
 }
 
 
-void testIRSensors(){
+void testIRSensors()
+{
    
-    while(ADC1BUF11 < 2000){
+    while(ADC1BUF11 < 2000)
+    {
         rotateXDegrees(2);
         delayMS(300);
     }
+}
+    
 void driveToCornerQuickTest()
 {
    
@@ -145,4 +155,6 @@ void driveToCornerQuickTest()
     toggleMotorsOn();
 
 }
+
+
    
