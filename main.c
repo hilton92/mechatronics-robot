@@ -3,13 +3,14 @@
 //#include<xc.h>
 
 #include"constants.h"
-#include"handlers.h"
+//#include"handlers.h"
 #include"configurations.h"
 #include"eventUpdaters.h"
 #include"stateChangers.h"
 #include"motorFunctions.h"
 #include"interrupt.h"
 #include"functions.h"
+#include"caseSwitch.h"
 
 //-----------------------------------------------------
 // Function STUBS
@@ -24,7 +25,7 @@ int mainTest();
 // Configurations
 // Select oscillator
 
-_FOSCSEL(FNOSC_FRC);// & SOSCSRC_DIG);
+_FOSCSEL(FNOSC_FRC & SOSCSRC_DIG);
 
 _FICD(ICS_PGx3);
 
@@ -48,6 +49,7 @@ int buttonPressed = 0;
 int leftBinLightDetected = 0;
 int rightBinLightDetected = 0;
 int frontBinLightDetected = 0;
+int frontButtonsPressed = 0;
 
 
 //global no cyclic clearing variables
@@ -62,7 +64,7 @@ int shootTime = 0;
 
 int main()
 {
-    int testing = 1;
+    int testing = 0;
     
     if(testing)
     {

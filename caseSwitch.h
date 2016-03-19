@@ -119,21 +119,24 @@ void caseSwitch()
                 while(1)
                 { 
                     //state specific updaters
-                    checkOneSonicSensorThresholdMet();
+                    checkFrontButtonsPressed();
 
                     
-//                    //check event status
-//                    if(getEventStatus(ONESONICSENSORTHRESHOLDMET))
-//                    {
-//                        //update state variable
-//                        currentState = DRIVEINTOCORNER;
-//
-//                        //change to the state
-//                        changeToState(DRIVEINTOCORNER);
-//
-//                        //break out of the while loop
-//                        break;
-//                    }
+                    //check event status
+                    if(getEvent(&frontButtonsPressed))
+                    {
+                        //exit state
+                        changeState(DRIVETOCORNERQUICK, EXIT);
+                        
+                        //update state variable
+                        currentState = DRIVEINTOCORNER;
+
+                        //change to the state
+                        changeState(DRIVEINTOCORNER, ENTER);
+
+                        //break out of the while loop
+                        break;
+                    }
 
                 }
                 break;
@@ -224,6 +227,111 @@ void caseSwitch()
                         //break out of the while loop
                         break;
                     }
+
+
+
+                }
+                break;
+                
+            case FACEFRONTBINLIGHT:
+
+                while(1)
+                {       
+                    //state specific updaters
+                    
+                    changeState(FACEFRONTBINLIGHT, EXIT);
+                    
+                    currentState = WAITFORBINLIGHT;
+                    
+                    changeState(WAITFORBINLIGHT, ENTER);
+                    
+                    break;
+                    
+//                    // check event status
+//                    if(getEventInfo(&motorPeriodCount) > DRIVETOMIDDLECOUNT)
+//                    {
+//                        //exit the state
+//                        changeState(DRIVETOMIDDLE, EXIT);
+//
+//                        //update state variable
+//                        currentState = WAITFORBINLIGHT;
+//
+//                        //change to the state
+//                        changeState(WAITFORBINLIGHT, ENTER);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
+
+
+
+                }
+                break;
+            
+            case FACERIGHTBINLIGHT:
+
+                while(1)
+                {       
+                    //state specific updaters
+
+                    changeState(FACERIGHTBINLIGHT, EXIT);
+                    
+                    currentState = WAITFORBINLIGHT;
+                    
+                    changeState(WAITFORBINLIGHT, ENTER);
+                    
+                    break;
+                    
+//                    // check event status
+//                    if(getEventInfo(&motorPeriodCount) > DRIVETOMIDDLECOUNT)
+//                    {
+//                        //exit the state
+//                        changeState(DRIVETOMIDDLE, EXIT);
+//
+//                        //update state variable
+//                        currentState = WAITFORBINLIGHT;
+//
+//                        //change to the state
+//                        changeState(WAITFORBINLIGHT, ENTER);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
+
+
+
+                }
+                break;
+                
+            case FACELEFTBINLIGHT:
+
+                while(1)
+                {       
+                    //state specific updaters
+
+                    changeState(FACELEFTBINLIGHT, EXIT);
+                    
+                    currentState = WAITFORBINLIGHT;
+                    
+                    changeState(WAITFORBINLIGHT, ENTER);
+                    
+                    break;
+                    
+//                    // check event status
+//                    if(getEventInfo(&motorPeriodCount) > DRIVETOMIDDLECOUNT)
+//                    {
+//                        //exit the state
+//                        changeState(DRIVETOMIDDLE, EXIT);
+//
+//                        //update state variable
+//                        currentState = WAITFORBINLIGHT;
+//
+//                        //change to the state
+//                        changeState(WAITFORBINLIGHT, ENTER);
+//
+//                        //break out of the while loop
+//                        break;
+//                    }
 
 
 

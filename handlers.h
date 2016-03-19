@@ -5,9 +5,9 @@
  * Created on February 5, 2016, 9:45 PM
  */
 
-#include <stdlib.h>
 
-#include "constants.h"
+
+//#include "constants.h"
 
 
 
@@ -47,6 +47,7 @@ extern int ballsFull;
 extern int leftBinLightDetected;
 extern int rightBinLightDetected;
 extern int frontBinLightDetected;
+extern int frontButtonsPressed;
 
 //event info variables
 extern int motorPeriodCount;
@@ -72,6 +73,7 @@ void clearEvents()
     leftBinLightDetected = 0;
     rightBinLightDetected = 0;
     frontBinLightDetected = 0;
+    frontButtonsPressed = 0;
 }
 
 
@@ -119,7 +121,8 @@ int getEvent(int *variable)
     //error
     else
     {
-        exit(0);
+//        exit(0);
+        return 0;
     }
 }
 

@@ -11,6 +11,7 @@
 //Must close the ball drop pin when entering other states
 
 #include "constants.h"
+#include "functions.h"
 
 #ifndef EVENTUPDATERS_H
 #define	EVENTUPDATERS_H
@@ -27,6 +28,7 @@ void checkButtonPressed();
 void checkLeftBinLightDetected();
 void checkRightBinLightDetected();
 void checkFrontBinLightDetected();
+void checkFrontButtonsPressed();
 
 //----------------------------------------------
 
@@ -72,25 +74,63 @@ void checkButtonPressed()
 
 void checkFrontBinLightDetected()
 {
-    if(readAD(16) > IRBINTHRESHOLD)
+    float sum = 0;
+    
+    int count = 0;
+    while(count < 70)
     {
-        setHigh(&frontBinLightDetected&);
+        sum = sum + readAD(15);
+        count++;
+    }
+    
+    float voltageFront = sum/70.0;
+    if(voltageFront > IRBINTHRESHOLD)
+    {
+        setHigh(&frontBinLightDetected);
     }
 }
 
 void checkRightBinLightDetected()
 {
-    if(readAD(17) > IRBINTHRESHOLD)
+    float sum = 0;
+    
+    int count = 0;
+    while(count < 70)
     {
-        setHigh(&rightBinLightDetected&);
+        sum = sum + readAD(17);
+        count++;
+    }
+    
+    float voltageRight = sum/70.0;
+    if(voltageRight > IRBINTHRESHOLD)
+    {
+        setHigh(&rightBinLightDetected);
     }
 }
 
 void checkLeftBinLightDetected()
 {
-    if(readAD(18) > IRBINTHRESHOLD)
+    float sum = 0;
+    
+    int count = 0;
+    while(count < 70)
     {
-        setHigh(&leftBinLightDetected&);
+        sum = sum + readAD(18);
+        count++;
+    }
+    
+    float voltageLeft = sum/70.0;
+    if(voltageLeft > IRBINTHRESHOLD)
+    {
+        setHigh(&leftBinLightDetected);
+    }
+}
+
+void checkFrontButtonsPressed()
+{
+    if(_RB7 == 1)
+    {
+        setHigh(&frontButtonsPressed);
     }
 }
 

@@ -43,7 +43,7 @@ const int MOTORHIGHSPEED = 600; //period for motors
 const int TURRETSPEED = 1000; //turret speed 
 const unsigned int QUARTERTURNCOUNT = 492;
 const unsigned int DRIVETOMIDDLECOUNT = 2112;
-const unsigned double IRBINTHRESHOLD = 1.3
+const float IRBINTHRESHOLD = 1.45;
 
 #endif	/* ENUMS_H */
 
