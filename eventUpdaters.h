@@ -34,12 +34,38 @@ void checkFrontButtonsPressed();
 
 void checkDispenserLightDetected()
 {
+    float sum = 0;
     
+    int count = 0;
+    while(count < 70)
+    {
+        sum = sum + readAD(16);
+        count++;
+    }
+    
+    float voltageFront = sum/70.0;
+    if(voltageFront > IRDISPENSERDETECTED)
+    {
+        setHigh(&dispenserLightDetected);
+    }
 }
 
 void checkDispenserLightThresholdMet()
 {
+    float sum = 0;
     
+    int count = 0;
+    while(count < 70)
+    {
+        sum = sum + readAD(16);
+        count++;
+    }
+    
+    float voltageFront = sum/70.0;
+    if(voltageFront > IRDISPENSERTHRESHOLD)
+    {
+        setHigh(&dispenserLightThresholdMet);
+    }
 }
 
 void checkBinLightDetected()

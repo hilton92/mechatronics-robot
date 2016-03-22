@@ -14,6 +14,8 @@
 //function prototypes
 void delayMS(int);
 float readAD(int);
+void rotateDisk(float);
+void triggerLaser();
 
 
 void delayMS(int miliseconds) //max of 4 seconds!!!
@@ -73,6 +75,33 @@ float readAD(int pin)
     }
     return voltage;
 }
+
+void rotateDisk(float degree) // 0 to 180
+{
+    OC1R =  (int) (250 + degree / 180.0 * 950);
+}
+
+void triggerLaser()
+{
+    rotateDisk(180);
+    delayMS(500);
+    rotateDisk(0);
+    delayMS(500);
+    
+    rotateDisk(180);
+    delayMS(500);
+    rotateDisk(0);
+    delayMS(500);
+    
+    rotateDisk(180);
+    delayMS(500);
+    rotateDisk(0);
+    delayMS(500);
+    
+    
+
+}
+
 
 #endif	/* FUNCTIONS_H */
 

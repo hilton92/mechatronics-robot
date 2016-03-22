@@ -44,6 +44,8 @@ const int TURRETSPEED = 1000; //turret speed
 const unsigned int QUARTERTURNCOUNT = 492;
 const unsigned int DRIVETOMIDDLECOUNT = 2112;
 const float IRBINTHRESHOLD = 1.45;
+const float IRDISPENSERDETECTED = 1.3;
+const float IRDISPENSERTHRESHOLD = 1.4;
 
 #endif	/* ENUMS_H */
 

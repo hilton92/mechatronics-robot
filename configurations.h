@@ -19,6 +19,7 @@ void configurePWM(int ocx, int timer, int period);
 //float readAD(int pin); //reads in value from 0 to 3.3 volts
 void configureTimerXInterrupt(int timer);
 void configureTimer(int timer, int perscaler);
+void setInitialPositions();
 //---------------
 
 //configure timer
@@ -60,6 +61,7 @@ void configureTimers()
     configureTimer(2,PRESCALE_ONE_8);  //Both Motors
     configureTimer(5,PRESCALE_ONE_256);  //For the timer function
     configureTimer(3,PRESCALE_ONE_8);  //Turret Motor
+    configureTimer(4,PRESCALE_ONE_8); //Servo Motor
 }
 
 void configureTimerInterrupts()
@@ -79,10 +81,14 @@ void configureIOPins()
     _TRISA1 = 0; //right motor direction pin 3
     _TRISB9 = 0; //turret direction pin 13
     _TRISB7 = 1; //front bumper buttons
+    _TRISA6 = 0; //servo motor
     
     //configure motor pins
     configurePWM(2,2,500); //left motor pin 4 RB0 
     configurePWM(3,3,500); //turret motor pin 5 RB1
+    
+    //configure servo
+    configurePWM(1,4,12500); //250 to 950
     
 //    toggleMotors(LEFT,OFF);
 //    toggleMotors(RIGHT,OFF);    
@@ -314,6 +320,11 @@ void configurePWM(int ocx, int timer, int period)
 void configureEvents()
 {
     initializeEvents();    
+}
+
+void setInitialPositions()
+{
+    rotateDisk(0);
 }
 
 

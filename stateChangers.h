@@ -117,7 +117,7 @@ void turnFindIR(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
     if(direction == ENTER)
     {
-
+        turn(MOTORLOWSPEED, LEFT);
     }
     else
     {
@@ -131,7 +131,7 @@ void faceDispenser(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
     {
-
+        //turn(MOTORLOWSPEED, LEFT)
     }
     else
     {
@@ -145,7 +145,7 @@ void driveToCornerQuick(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
     {
-
+        driveStraight(MOTORLOWSPEED, FORWARD);
     }
     else
     {
@@ -173,11 +173,11 @@ void loadBalls(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
     {
-
+        triggerLaser();
     }
     else
     {
-        
+        clearEventInfo();
     }
 }
 
@@ -191,7 +191,7 @@ void driveToMiddle(unsigned char direction)
     }
     else
     {
-        rotateTurret(185, LEFT);
+        rotateTurret(140, LEFT);
     }
 }
 

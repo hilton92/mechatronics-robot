@@ -68,8 +68,8 @@ int main()
     
     if(testing)
     {
-//        mainConfig();
-//        mainTest();
+        mainConfig();
+        mainTest();
         while(1);
     }
     
@@ -94,6 +94,7 @@ void mainConfig()
     configureTimers();
     configureTimerInterrupts();
     setToNullState();
+    setInitialPositions();
 }
 
 
@@ -110,21 +111,11 @@ void testIRSensors();
 int mainTest()
 {
     
-    //testIRSensors();
-//    driveToCornerQuickTest();
-//        
-//    delayMS(2000);
-// 
-//    setToNullState();  
-//    rotateXDegrees(180);
-//    setToNullState();
-//    driveToCornerQuickTest();
-//    
-//
-//    delayMS(2000);
-
-    rotateTurret(90, LEFT);
-    setToNullState();
+    //OC1R = 1000;
+    //rotateDisk(180);
+    
+    triggerLaser();
+    //turn(MOTORLOWSPEED, LEFT);
 
     return 0;
 }
