@@ -136,14 +136,14 @@ void turn(int speed, int direction)
     if(direction == LEFT)
     {
         //set motor direction
-        setMotorDirection(LEFT,LEFT);
-        setMotorDirection(RIGHT,RIGHT); 
+        setMotorDirection(LEFT,RIGHT);
+        setMotorDirection(RIGHT,LEFT); 
     }
     else if(direction == RIGHT)
     {
         //set motor direction
-        setMotorDirection(LEFT,RIGHT);
-        setMotorDirection(RIGHT,LEFT); 
+        setMotorDirection(LEFT,LEFT);
+        setMotorDirection(RIGHT,RIGHT); 
     }
     
     //set motor speed

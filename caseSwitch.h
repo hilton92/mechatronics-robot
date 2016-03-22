@@ -6,6 +6,7 @@
  */
 #include "stateChangers.h"
 #include "eventUpdaters.h"
+#include "functions.h"
 
 
 #ifndef CASESWITCH_H
@@ -20,10 +21,10 @@ void caseSwitch();
 void caseSwitch()
 {
     //initialize state variable and state
-    static unsigned char currentState = DRIVETOMIDDLE;
+    static unsigned char currentState = TURNFINDIR;
     
     //initialize state
-   changeState(DRIVETOMIDDLE, ENTER);
+   changeState(TURNFINDIR, ENTER);
     
     while(1)
     {
@@ -47,10 +48,10 @@ void caseSwitch()
                         changeState(TURNFINDIR, EXIT);
 
                         //update state variable
-                        currentState = FACEDISPENSER;
+                        currentState = DRIVETOCORNERQUICK;
 
                         //change to the state
-                        changeState(FACEDISPENSER, ENTER);
+                        changeState(DRIVETOCORNERQUICK, ENTER);
 
                         //break out of the while loop
                         
@@ -83,20 +84,22 @@ void caseSwitch()
                 while(1)
                 { 
                     //state specific updaters
-//                    checkDispenserLightThresholdMet();
-//                    checkButtonPressed();
-//                    
-//                    if(getEventStatus(BUTTONPRESSED))
-//                    {
-//                        //update state variable
-//                        currentState = WAITFORBUTTON;
-//                        
-//                        //change to the state
-//                        changeToState(WAITFORBUTTON);
-//                        
-//                        //break out of while loop
-//                        break;
-//                    }
+                    checkDispenserLightThresholdMet();
+                    
+                    if(getEvent(&dispenserLightThresholdMet))
+                    {
+                        //exit state
+                        changeState(FACEDISPENSER, EXIT);
+                        
+                        //update state variable
+                        currentState = DRIVETOCORNERQUICK;
+                        
+                        //change to the state
+                        changeState(DRIVETOCORNERQUICK, ENTER);
+                        
+                        //break out of while loop
+                        break;
+                    }
                     
                     //check event status
 //                    if(getEventStatus(DISPENSERLIGHTTHRESHOLDMET) == 1)
@@ -129,10 +132,10 @@ void caseSwitch()
                         changeState(DRIVETOCORNERQUICK, EXIT);
                         
                         //update state variable
-                        currentState = DRIVEINTOCORNER;
+                        currentState = LOADBALLS;
 
                         //change to the state
-                        changeState(DRIVEINTOCORNER, ENTER);
+                        changeState(LOADBALLS, ENTER);
 
                         //break out of the while loop
                         break;
@@ -147,6 +150,8 @@ void caseSwitch()
                 { 
                     //state specific updaters
                     checkTwoSonicSensorThresholdMet();
+                    
+                    
 
                     /*
                     //check event status
@@ -182,6 +187,17 @@ void caseSwitch()
 
             case LOADBALLS:
 
+                //exit state
+                changeState(LOADBALLS, EXIT);
+                        
+                //update state variable
+                currentState = DRIVETOMIDDLE;
+
+                //change to the state
+                changeState(DRIVETOMIDDLE, ENTER);
+                
+                break;
+                
 //                while(1)
 //                { 
 //                    checkButtonPressed();
