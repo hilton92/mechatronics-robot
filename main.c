@@ -11,6 +11,7 @@
 #include"interrupt.h"
 #include"functions.h"
 #include"caseSwitch.h"
+#include"calibrations.h"
 
 //-----------------------------------------------------
 // Function STUBS
@@ -50,6 +51,7 @@ int leftBinLightDetected = 0;
 int rightBinLightDetected = 0;
 int frontBinLightDetected = 0;
 int frontButtonsPressed = 0;
+int turretButtonPressed = 0;
 
 
 //global no cyclic clearing variables
@@ -69,8 +71,9 @@ int main()
     if(testing)
     {
         mainConfig();
-        mainTest();
+       // mainTest();
         while(1);
+        
     }
     
     else
@@ -112,12 +115,47 @@ void testULTRASONIC();
 int mainTest()
 {
     
+    rotateTurret(150, LEFT);
+//    
+    while(1)
+    {
+    checkFrontBinLightDetected();
+    checkRightBinLightDetected();
+    checkLeftBinLightDetected();
+//    
+//    if(frontBinLightDetected)
+//    {
+//        rotateTurret(45, RIGHT);
+//        rotateTurret(45, LEFT);
+//    }
+//    
+//    if(rightBinLightDetected)
+//    {
+//        rotateTurret(15, RIGHT);
+//    }
+//    
+//    if(leftBinLightDetected)
+//    {
+//        rotateTurret(15, LEFT);
+//    }
+    
+    checkDispenserLightDetected();
+    if(dispenserLightDetected)
+    {
+        rotateTurret(15, RIGHT);
+        rotateTurret(15,LEFT);
+    }
+    
+    
+    
+    clearEvents();
     //OC1R = 1000;
     //rotateDisk(180);
     //testULTRASONIC();
     //triggerLaser();
     //turn(MOTORLOWSPEED, LEFT);
-
+    
+}
     return 0;
 }
 

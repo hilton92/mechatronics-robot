@@ -87,7 +87,7 @@ void configureIOPins()
     _TRISB2 = 1; //Ultrasonic 1 input
     _TRISA2 = 0; //Ultrasonic 1 output
     _TRISA3 = 1; //Ultrasonic 2 input
-    _TRISB4 = 0; //Ultrasonic 2 output
+    _TRISB4 = 1; //Ultrasonic 2 output
     _TRISA4 = 1; //turret stopper button
     
     //configure motor pins
@@ -95,10 +95,7 @@ void configureIOPins()
     configurePWM(3,3,500); //turret motor pin 5 RB1
     
     //configure servo
-    configurePWM(1,4,12500); //250 to 950
-    
-//    toggleMotors(LEFT,OFF);
-//    toggleMotors(RIGHT,OFF);    
+    configurePWM(1,4,12500); //250 to 950 
     
     //Configure the analog pins for IR
     chooseADpin(15);
@@ -329,11 +326,7 @@ void configureEvents()
     initializeEvents();    
 }
 
-void calibrate()
-{
-    rotateDisk(0);
-    //read values
-}
+
 
 
 
