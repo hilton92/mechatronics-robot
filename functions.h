@@ -145,19 +145,19 @@ void rotateDisk(float degree) // 0 to 180
 void triggerLaser()
 {
     rotateDisk(180);
-    delayMS(500);
+    delayMS(TRIGGERDELAY);
     rotateDisk(0);
-    delayMS(500);
+    delayMS(TRIGGERDELAY);
     
     rotateDisk(180);
-    delayMS(500);
+    delayMS(TRIGGERDELAY);
     rotateDisk(0);
-    delayMS(500);
+    delayMS(TRIGGERDELAY);
     
     rotateDisk(180);
-    delayMS(500);
-    //rotateDisk(0);
-    //delayMS(500);
+    delayMS(TRIGGERDELAY);
+//    rotateDisk(0);
+//    delayMS(500);
     
 }
 
