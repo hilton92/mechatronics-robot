@@ -107,20 +107,41 @@ void mainConfig()
 
 void driveToCornerQuickTest();
 void testIRSensors();
+void testULTRASONIC();
 
 int mainTest()
 {
     
     //OC1R = 1000;
     //rotateDisk(180);
-    
-    triggerLaser();
+    //testULTRASONIC();
+    //triggerLaser();
     //turn(MOTORLOWSPEED, LEFT);
 
     return 0;
 }
 
-
+void testULTRASONIC(){
+    int microseconds = 0;
+    //RB2 Ultrasonic 1 (in - echo) pin 6
+    //RA2 Ultrasonic 1 (out - trig) pin 7
+    //RA3 ULtrasonic 2 (in - echo) pin 8
+    //RB4 Ultrasonic 2 (out - trig) pin 9
+    while (1){
+    _LATA2 = 1;
+    delay10Microseconds();
+    _LATA2 = 0;
+    microseconds = pulseIn(6);
+    if (microseconds == 0){
+        //threshold met
+    }
+    else{
+        _LATA4 = 0;
+    }
+    delayMS(100);
+    }
+    
+}
 void testIRSensors()
 {
    
