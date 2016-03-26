@@ -19,7 +19,7 @@ void configurePWM(int ocx, int timer, int period);
 //float readAD(int pin); //reads in value from 0 to 3.3 volts
 void configureTimerXInterrupt(int timer);
 void configureTimer(int timer, int perscaler);
-void setInitialPositions();
+void calibrate();
 //---------------
 
 //configure timer
@@ -329,9 +329,10 @@ void configureEvents()
     initializeEvents();    
 }
 
-void setInitialPositions()
+void calibrate()
 {
     rotateDisk(0);
+    //read values
 }
 
 

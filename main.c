@@ -94,7 +94,7 @@ void mainConfig()
     configureTimers();
     configureTimerInterrupts();
     setToNullState();
-    setInitialPositions();
+    calibrate();
 }
 
 
