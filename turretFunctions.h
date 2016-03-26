@@ -13,25 +13,9 @@ void toggleOffTurret();
 void setTurretSpeed();
 
 void rotateTurret(double degree, int direction)
-{
-    //toggleMotorsOff();
-    
+{    
     // turn motors off
     toggleOffTurret();
-    
-    //set motor direction
-//    setMotorDirection(LEFT,BACKWARD);
-//    setMotorDirection(RIGHT,FORWARD); 
-    
-     //set motor speeds
-//    setMotorSpeed(LEFT,MOTORLOWSPEED);
-//    setMotorSpeed(RIGHT, MOTORLOWSPEED);  
-  //  setBothMotorSpeeds(MOTORLOWSPEED);
-    
-    //turn on motors
-//    toggleMotors(LEFT,ON);
-//    toggleMotors(RIGHT,ON); 
-   // toggleMotorsOn();
     
     //clearEventInfo(PERIODCOUNTRIGHT);
     setLow(&turretPeriodCount);
@@ -83,6 +67,30 @@ void toggleOffTurret()
 void setTurretSpeed(unsigned int speed)
 {
     PR3 = speed;
+}
+
+void turnTurret(int direction)
+{
+    // turn motors off
+    toggleOffTurret();
+    
+	//rotate left
+	if(direction == LEFT )
+	{
+        _LATB9 = 1;
+	}
+
+	//rotate right
+	else
+	{
+        _LATB9 = 0;
+	}
+    
+    // set the speed
+    setTurretSpeed(TURRETSPEED);   
+    
+    // toggle motors on
+    toggleOnTurret();
 }
 
 #endif	/* TURRETFUNCTIONS_H */

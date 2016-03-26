@@ -41,7 +41,7 @@ void caseSwitch()
                     // checkBinLightDetected();                   
                     
                     //check event status
-                    if(getEvent(&dispenserLightDetected) && !getEventInfo(&ballsFull) )
+                    if(getEvent(&dispenserLightDetected) )
                     {
 
                         //exit the state

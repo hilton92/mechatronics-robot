@@ -48,6 +48,7 @@ extern int leftBinLightDetected;
 extern int rightBinLightDetected;
 extern int frontBinLightDetected;
 extern int frontButtonsPressed;
+extern int turretButtonPressed;
 
 //event info variables
 extern int motorPeriodCount;

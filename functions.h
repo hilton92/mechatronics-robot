@@ -161,6 +161,10 @@ void triggerLaser()
     
 }
 
+void getAverageIR()
+{
+    
+}
 
 #endif	/* FUNCTIONS_H */
 
