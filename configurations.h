@@ -62,10 +62,12 @@ void configureTimers()
     configureTimer(5,PRESCALE_ONE_256);  //For the timer function
     configureTimer(3,PRESCALE_ONE_8);  //Turret Motor
     configureTimer(4,PRESCALE_ONE_8); //Servo Motor
+    configureTimer(1,PRESCALE_ONE_1); //for the Ultrasonic counter
 }
 
 void configureTimerInterrupts()
 {
+    configureTimerXInterrupt(1);
     configureTimerXInterrupt(2);
     configureTimerXInterrupt(5);
     configureTimerXInterrupt(3);
@@ -82,6 +84,11 @@ void configureIOPins()
     _TRISB9 = 0; //turret direction pin 13
     _TRISB7 = 1; //front bumper buttons
     _TRISA6 = 0; //servo motor
+    _TRISB2 = 1; //Ultrasonic 1 input
+    _TRISA2 = 0; //Ultrasonic 1 output
+    _TRISA3 = 1; //Ultrasonic 2 input
+    _TRISB4 = 0; //Ultrasonic 2 output
+    _TRISA4 = 1; //turret stopper button
     
     //configure motor pins
     configurePWM(2,2,500); //left motor pin 4 RB0 

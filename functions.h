@@ -16,13 +16,74 @@ void delayMS(int);
 float readAD(int);
 void rotateDisk(float);
 void triggerLaser();
+void delayMicroseconds(float);
+int pulseIn(int);
 
 
-void delayMS(int miliseconds) //max of 4 seconds!!!
+
+int pulseIn(int pin){
+    //this function will return in microseconds the length of a pulse
+    //only for ULTRASONIC pins!!
+    int counts = 0;
+    int microseconds = 0;
+    switch (pin){
+        case 6:
+            //RB2
+  
+            while (!_RB2){
+            }
+            TMR1 = 0;
+            while (_RB2){}
+            TMR1 = counts;
+            microseconds = counts * 4;
+            break;
+        case 7:
+            //RA2
+            while (!_RA2){
+            }
+            TMR1 = 0;
+            while (_RA2){}
+            TMR1 = counts;
+            microseconds = counts * 4;
+            break;
+        case 8:
+            //RA3
+            while (!_RA3){
+            }
+            TMR1 = 0;
+            while (_RA3){}
+            TMR1 = counts;
+            microseconds = counts * 4;
+            break;
+        case 9:
+            //RB4
+            while (!_RB4){
+            }
+            TMR1 = 0;
+            while (_RB4){}
+            TMR1 = counts;
+            microseconds = counts * 4;
+            break;
+    }
+    return microseconds;
+}
+
+void delay10Microseconds(){
+    _T1IF = 0;    
+    PR1 = 40;
+    TMR1 = 0;
+    setLow(&timer1Met);
+    while(!timer1Met)
+    {        
+    }
+    setLow(&timer1Met);
+}
+
+
+void delayMS(int milliseconds) //max of 4 seconds!!!
 {
-    
     _T5IF = 0;    
-    PR5 = 1/.064 * miliseconds;
+    PR5 = 1/.064 * milliseconds;
     TMR5 = 0;
     setLow(&timer5Met);
     while(!timer5Met)
@@ -95,11 +156,9 @@ void triggerLaser()
     
     rotateDisk(180);
     delayMS(500);
-    rotateDisk(0);
-    delayMS(500);
+    //rotateDisk(0);
+    //delayMS(500);
     
-    
-
 }
 
 
