@@ -198,29 +198,6 @@ void caseSwitch()
                 
                 break;
                 
-//                while(1)
-//                { 
-//                    checkButtonPressed();
-//                    
-//                    if(getEventStatus(TIMER1MET) )
-//                    {
-//                        // exit the state
-//                        changeState(LOADBALLS, EXIT);
-//
-//                        //update state variable
-//                        currentState = DRIVETOMIDDLE;
-//
-//                        //change to the state
-//                        changeState(DRIVETOMIDDLE, ENTER);
-//
-//                        //break out of the while loop
-//                        break;
-//                    }
-//
-//
-//
-//                }
-                break;
 
             case DRIVETOMIDDLE:
 
@@ -414,72 +391,49 @@ void caseSwitch()
                 }
                 break;  
 
-//            case BACKUPTOSHOOT:
-//
-//                while(1)
-//                { 
-//                    //state specific updaters
-//                    checkButtonPressed();
-//                    checkButtonPressed();
-//                    
-//                    if(getEventStatus(BUTTONPRESSED))
-//                    {
-//                        //exit the state
-//                        changeState(BACKUPTOSHOOT, EXIT);
-//
-//                        //update state variable
-//                        currentState = WAITFORBUTTON;
-//                        
-//                        //change to the state
-//                        changeState(WAITFORBUTTON. ENTER);
-//                        
-//                        //break out of while loop
-//                        break;
-//                    }
-//                    
-//                    //check event status
-//                    else if(getEventStatus(BUTTONPRESSED) == 1)
-//                    {
-//                        //exit the state
-//                        changeState(BACKUPTOSHOOT, EXIT);
-//
-//                        //update state variable
-//                        currentState = TURNFINDIR;
-//
-//                        //change to the state
-//                        changeToState(TURNFINDIR, ENTER);
-//
-//                        //break out of the while loop
-//                        break;
-//                    }
-//
-//
-//                }
-//                break;
-
             case SHOOTGOALS:
 
-//                while(1)
-//                { 
-//                    //state specific updaters
-//                    checkBinLightNotDetected();
-//
-//                    //check event status
-//                    if(getEventStatus(BINLIGHTNOTDETECTED) || !getEventStatus(BALLSFULL))
-//                    {
-//                        //exit the state
-//                        changeState(SHOOTGOALS, EXIT);
-//
-//                        //update state variable
-//                        currentState = DRIVETOMIDDLE;
-//
-//                        //change to the state
-//                        changeState(DRIVETOMIDDLE, ENTER);
-//
-//                        //break out of the while loop
-//                        break;
-//                    }
-//                }
+                while(1)
+                { 
+                    //state specific updaters
+
+                    
+                    checkBinLightNotDetected();
+                    
+                    //check event status
+                    if(!containsBalls())
+                    {
+                        //exit the state
+                        changeState(SHOOTGOALS, EXIT);
+
+                        //update state variable
+                        currentState = DRIVETOCORNERQUICK;
+
+                        //change to the state
+                        changeState(DRIVETOCORNERQUICK, ENTER);
+
+                        //break out of the while loop
+                        break;
+                    }
+                    
+                    else if(getEvent(&binLightNotDetected))
+                    {
+                        //exit the state
+                        changeState(SHOOTGOALS, EXIT);
+                        
+                        changeState(FACELEFTBINLIGHT, EXIT);
+                        //update state variable
+                        currentState = WAITFORBINLIGHT;
+
+                        //change to the state
+                        changeState(WAITFORBINLIGHT, ENTER);
+
+                        //break out of the while loop
+                        break;
+                    }
+                    
+                    shoot();
+                }
                 break;
 
 
