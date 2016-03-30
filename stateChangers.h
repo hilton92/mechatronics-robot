@@ -8,6 +8,7 @@
 #include "motorFunctions.h"
 #include "functions.h"
 #include "turretFunctions.h"
+#include "calibrations.h"
 
 #ifndef STATECHANGERS_H
 #define	STATECHANGERS_H
@@ -146,6 +147,8 @@ void driveToCornerQuick(unsigned char direction)
     if(direction == ENTER)
     {
         driveStraight(MOTORLOWSPEED, FORWARD);
+        calibrateTurret();
+        toggleShooter(OFF);
     }
     else
     {
@@ -178,6 +181,7 @@ void loadBalls(unsigned char direction)
     else
     {
         clearEventInfo();
+        setBallsFull();
     }
 }
 
@@ -192,6 +196,7 @@ void driveToMiddle(unsigned char direction)
     else
     {
         rotateTurret(140, LEFT);
+        toggleShooter(ON);
     }
 }
 
@@ -216,6 +221,7 @@ void faceLeftBinLight(unsigned char direction)
     if(direction == ENTER)
     {
         rotateTurret(90,LEFT);
+        currentBin = LEFTBIN;
     }
     else
     {
@@ -230,6 +236,7 @@ void faceRightBinLight(unsigned char direction)
     if(direction == ENTER)
     {
         rotateTurret(90,RIGHT);
+        currentBin = RIGHTBIN;
     }
     else
     {
@@ -243,7 +250,7 @@ void faceFrontBinLight(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
     if(direction == ENTER)
     {
-
+        currentBin = FRONTBIN;
     }
     else
     {

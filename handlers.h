@@ -24,6 +24,9 @@ void setHigh(int*);
 void incrementByOne(int*);
 int getEvent(int*);
 int getEventInfo(int*);
+void decrementByOne(int*);
+void setBallsFull();
+int containsBalls();
 
 //----------------------------------------------------------
 
@@ -43,7 +46,6 @@ extern int oneSonicSensorThresholdMet;
 extern int twoSonicSensorThresholdMet;
 extern int timer1Met;
 extern int buttonPressed;
-extern int ballsFull;
 extern int leftBinLightDetected;
 extern int rightBinLightDetected;
 extern int frontBinLightDetected;
@@ -55,8 +57,10 @@ extern int motorPeriodCount;
 extern int turretPeriodCount;
 extern int shootTime;
 extern int timer5Met;
+extern int currentBin;
  
-
+//other globals
+extern int ballCount;
 //Function Definitions----------------------------------------
 
 
@@ -89,7 +93,7 @@ void initializeEvents()
 {
     clearEvents();
     clearEventInfo();
-    ballsFull = 0;
+    ballCount = 0;
     timer5Met = 0;
 }
 
@@ -132,7 +136,29 @@ int getEventInfo(int *variable)
     return *variable;
 }
 
+//ball specific handlers
+
+void decrementByOne(int *variable)
+{
+    *variable = *variable - 1;
+}
+
+void setBallsFull()
+{
+    ballCount = 6;
+}
 
 
+int containsBalls()
+{
+    if(ballCount > 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
 #endif	/* EVENTS_H */
 

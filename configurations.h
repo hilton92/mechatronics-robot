@@ -87,7 +87,7 @@ void configureIOPins()
     _TRISB2 = 1; //Ultrasonic 1 input
     _TRISA2 = 0; //Ultrasonic 1 output
     _TRISA3 = 1; //Ultrasonic 2 input
-    _TRISB4 = 1; //Ultrasonic 2 output
+    _TRISB4 = 0; //shooter toggle
     _TRISA4 = 1; //turret stopper button
     
     //configure motor pins

@@ -35,7 +35,7 @@ void calibrateTurret()
     turnTurret(RIGHT);
     while(1)
     {
-        if(_RB4 == 1)
+        if(_RA4 == 1)
         {
             setHigh(&turretButtonPressed);
         }
