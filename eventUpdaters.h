@@ -32,130 +32,132 @@ void checkFrontButtonsPressed();
 
 //----------------------------------------------
 
-void checkDispenserLightDetected()
-{
-    float sum = 0;
+void checkDispenserLightDetected() {
+    static float max = 0;
+    static int counter = 0;
+    static float prevVal = 0;
     
+    float sum = 0;
     int count = 0;
-    while(count < 70)
-    {
+    while (count < 70) {
         sum = sum + readAD(16);
         count++;
     }
-    
-    float voltageFront = sum/70.0;
-    if(voltageFront > IRDISPENSERDETECTED)
-    {
+    float voltageFront = sum / 70.0;
+    if (voltageFront > IRDISPENSERTHRESHOLD){
         setHigh(&dispenserLightDetected);
     }
+    
+    //code to find max threshold!!!
+    /*if (((voltageFront - prevVal) < IRDELTA) && ((prevVal - voltageFront) < IRDELTA)) {
+        
+        if (voltageFront > max) {
+            //set a new max
+            max = voltageFront;
+            counter = 0;
+        } 
+        else {
+            //increment the counter
+            counter = counter + 1;
+        }
+    }
+    if ((counter > 50) && (voltageFront > IRDISPENSERTHRESHOLD)){
+        setHigh(&dispenserLightDetected);
+        counter = 0;
+        
+    }
+    prevVal = voltageFront;*/
+    
 }
 
-void checkDispenserLightThresholdMet()
-{
+
+
+void checkDispenserLightThresholdMet() {
     float sum = 0;
-    
+
     int count = 0;
-    while(count < 70)
-    {
+    while (count < 70) {
         sum = sum + readAD(16);
         count++;
     }
-    
-    float voltageFront = sum/70.0;
-    if(voltageFront > IRDISPENSERTHRESHOLD)
-    {
+
+    float voltageFront = sum / 70.0;
+    if (voltageFront > IRDISPENSERTHRESHOLD) {
         setHigh(&dispenserLightThresholdMet);
     }
 }
 
-void checkBinLightDetected()
-{
-    
+void checkBinLightDetected() {
+
 }
 
-void checkBinLightNotDetected()
-{
-    
+void checkBinLightNotDetected() {
+
 }
 
-void checkBinLightThresholdMet()
-{
-    
+void checkBinLightThresholdMet() {
+
 }
 
-void checkOneSonicSensorThresholdMet()
-{
-    
+void checkOneSonicSensorThresholdMet() {
+
 }
 
-void checkTwoSonicSensorThresholdMet()
-{
-    
+void checkTwoSonicSensorThresholdMet() {
+
 }
 
-void checkButtonPressed()
-{
-    
+void checkButtonPressed() {
+
 }
 
-void checkFrontBinLightDetected()
-{
+void checkFrontBinLightDetected() {
     float sum = 0;
-    
+
     int count = 0;
-    while(count < 70)
-    {
+    while (count < 70) {
         sum = sum + readAD(15);
         count++;
     }
-    
-    float voltageFront = sum/70.0;
-    if(voltageFront > IRBINTHRESHOLD)
-    {
+
+    float voltageFront = sum / 70.0;
+    if (voltageFront > IRBINTHRESHOLD) {
         setHigh(&frontBinLightDetected);
     }
 }
 
-void checkRightBinLightDetected()
-{
+void checkRightBinLightDetected() {
     float sum = 0;
-    
+
     int count = 0;
-    while(count < 70)
-    {
+    while (count < 70) {
         sum = sum + readAD(17);
         count++;
     }
-    
-    float voltageRight = sum/70.0;
-    if(voltageRight > IRBINTHRESHOLD)
-    {
+
+    float voltageRight = sum / 70.0;
+    if (voltageRight > IRBINTHRESHOLD) {
         setHigh(&rightBinLightDetected);
     }
 }
 
-void checkLeftBinLightDetected()
-{
+void checkLeftBinLightDetected() {
     float sum = 0;
-    
+
     int count = 0;
-    while(count < 70)
-    {
+    while (count < 70) {
         sum = sum + readAD(18);
         count++;
     }
-    
-    float voltageLeft = sum/70.0;
-    if(voltageLeft > IRBINTHRESHOLD)
-    {
+
+    float voltageLeft = sum / 70.0;
+    if (voltageLeft > IRBINTHRESHOLD) {
         setHigh(&leftBinLightDetected);
     }
 }
 
-void checkFrontButtonsPressed()
-{
-    if(_RB7 == 1)
-    {
+void checkFrontButtonsPressed() {
+    if (_RB7 == 1) {
         setHigh(&frontButtonsPressed);
     }
 }

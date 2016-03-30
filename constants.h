@@ -47,6 +47,7 @@ const float IRBINTHRESHOLD = 1.45;
 const float IRDISPENSERDETECTED = 1.6;
 const float IRDISPENSERTHRESHOLD = 1.4;
 const unsigned int TRIGGERDELAY = 650;
+const float IRDELTA = 0.2;
 
 #endif	/* ENUMS_H */
 

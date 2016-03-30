@@ -23,6 +23,56 @@ void calibrate();
 //---------------
 
 //configure timer
+
+
+void calibrate(){
+    float voltArr[4];
+    float sum = 0;
+    int count = 0;
+    while (count < 70) {
+        sum = sum + readAD(15);
+        count++;
+    }
+    voltArr[0] = sum / 70.0;
+    sum = 0;
+    count = 0;
+    while (count < 70) {
+        sum = sum + readAD(16);
+        count++;
+    }
+    voltArr[1] = sum / 70.0;
+    sum = 0;
+    count = 0;
+    while (count < 70) {
+        sum = sum + readAD(17);
+        count++;
+    }
+    voltArr[2] = sum / 70.0;
+    sum = 0;
+    count = 0;
+    while (count < 70) {
+        sum = sum + readAD(18);
+        count++;
+    }
+    voltArr[3] = sum / 70.0;
+    //find the average of the lower 3 readings
+     for (int i = 0; i < 4; ++i)
+    {
+        for (int j = i + 1; j < 4; ++j)
+        {
+            if (voltArr[i] > voltArr[j])
+            {
+                float a =  voltArr[i];
+                voltArr[i] = voltArr[j];
+                voltArr[j] = a;
+            }
+        }
+    }
+    float t = voltArr[0] + voltArr[1] + voltArr[2];
+    t = t / 3.0;
+    //t is the value to calibrate to
+    
+}
 void configureTimer(int timer, int prescaler)
 {
     switch(timer)
