@@ -18,6 +18,8 @@ void rotateDisk(float);
 void triggerLaser();
 void delayMicroseconds(float);
 int pulseIn(int);
+void shoot();
+void toogleShooter(int);
 
 
 
@@ -164,6 +166,24 @@ void triggerLaser()
 void getAverageIR()
 {
     
+}
+void shoot()
+{
+    decrementByOne(&ballCount);
+}
+
+void toggleShooter(int onoff)
+{
+    switch(onoff)
+    {
+        case ON:
+            _LATB4 = 1;
+            break;
+        case OFF:
+            _LATB4 = 0;
+                
+    }
+     
 }
 
 #endif	/* FUNCTIONS_H */

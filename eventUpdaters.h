@@ -75,7 +75,26 @@ void checkBinLightDetected()
 
 void checkBinLightNotDetected()
 {
+    checkLeftBinLightDetected();
+    checkRightBinLightDetected();
+    checkFrontBinLightDetected();
     
+    if(currentBin == LEFTBIN && !getEvent(&leftBinLightDetected))
+    {
+        setHigh(&binLightNotDetected);
+    }
+    
+    else if(currentBin == RIGHTBIN && !getEvent(&rightBinLightDetected))
+    {
+        setHigh(&binLightNotDetected);
+    }
+    
+    else if(currentBin == FRONTBIN && !getEvent(&frontBinLightDetected))
+    {
+        setHigh(&binLightNotDetected);
+    }
+        
+     
 }
 
 void checkBinLightThresholdMet()

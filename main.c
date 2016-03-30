@@ -55,14 +55,16 @@ int turretButtonPressed = 0;
 
 
 //global no cyclic clearing variables
-int ballsFull = 0;
 int timer5Met = 0;
 
 //global state info variables----------------
 int motorPeriodCount = 0;
 int turretPeriodCount = 0;
 int shootTime = 0;
+int currentBin = 0;
 
+//other globals
+int ballCount = 0;
 
 int main()
 {
