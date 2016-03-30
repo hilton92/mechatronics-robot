@@ -21,10 +21,10 @@ void caseSwitch();
 void caseSwitch()
 {
     //initialize state variable and state
-    static unsigned char currentState = TURNFINDIR;
+    static unsigned char currentState = SHOOTGOALS;
     
     //initialize state
-   changeState(TURNFINDIR, ENTER);
+   changeState(SHOOTGOALS, ENTER);
     
     while(1)
     {
@@ -421,7 +421,7 @@ void caseSwitch()
                         //exit the state
                         changeState(SHOOTGOALS, EXIT);
                         
-                        changeState(FACELEFTBINLIGHT, EXIT);
+                        //changeState(FACELEFTBINLIGHT, EXIT);
                         //update state variable
                         currentState = WAITFORBINLIGHT;
 

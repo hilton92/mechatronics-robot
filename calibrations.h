@@ -20,7 +20,7 @@ void calibrateTurret();
 void calibrate()
 {
     rotateDisk(0);
-    calibrateTurret();
+    //calibrateTurret();
     calibrateDispenserThreshold();
     //read values
 }
