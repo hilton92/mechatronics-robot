@@ -21,8 +21,12 @@ void caseSwitch();
 void caseSwitch()
 {
     //initialize state variable and state
-    static unsigned char currentState = DRIVETOCORNERQUICK;
+    static unsigned char currentState = WAITFORBINLIGHT;
     
+    //initialize state
+   changeState(WAITFORBINLIGHT, ENTER);
+
+    static unsigned char currentState = DRIVETOCORNERQUICK;
     //initialize state
    changeState(DRIVETOCORNERQUICK, ENTER);
     

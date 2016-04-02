@@ -61,6 +61,9 @@ extern int currentBin;
  
 //other globals
 extern int ballCount;
+extern float IRthreshold;
+extern float MAXIRThreshold;
+extern float *IRValArray;
 //Function Definitions----------------------------------------
 
 

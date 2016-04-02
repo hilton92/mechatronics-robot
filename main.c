@@ -65,6 +65,9 @@ int currentBin = 0;
 
 //other globals
 int ballCount = 0;
+float IRthreshold = 0;
+float MAXIRThreshold = 0;
+float *IRValArray;
 
 int main()
 {
@@ -100,6 +103,7 @@ void mainConfig()
     configureTimerInterrupts();
     setToNullState();
     calibrate();
+    calibrateIR();
 }
 
 
