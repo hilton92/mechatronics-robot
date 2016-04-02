@@ -63,7 +63,7 @@ extern int currentBin;
 extern int ballCount;
 extern float IRthreshold;
 extern float MAXIRThreshold;
-extern float *IRValArray;
+extern float IRValArray[4];
 //Function Definitions----------------------------------------
 
 

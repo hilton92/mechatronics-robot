@@ -21,7 +21,7 @@ int pulseIn(int);
 void shoot();
 void toogleShooter(int);
 void updateIRArray();
-int isMaxIR(IRPIN);
+int isMaxIR(int);
 void toggleSolenoid(unsigned char);
 
 
@@ -223,7 +223,7 @@ void toggleShooter(int onoff)
      
 }
 
-int isMaxIR(IRPIN){
+int isMaxIR(int IRPIN){
     int returnBool = 1;
     float anV = 0;
     switch(IRPIN){
@@ -265,6 +265,8 @@ int isMaxIR(IRPIN){
             break;
     }
     return returnBool;
+ 
+ }
 
 void toggleSolenoid(unsigned char toggle)
 {

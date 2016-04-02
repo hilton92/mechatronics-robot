@@ -35,7 +35,7 @@ enum {ENTER, EXIT};
 
 enum {LEFTBIN, RIGHTBIN, FRONTBIN};
 
-enum IRPIN {LEFTIR, RIGHTIR, FRONTIR, REARIR};
+enum {LEFTIR, RIGHTIR, FRONTIR, REARIR};
 //global constants
 const unsigned char PRESCALE_ONE_256 = 0b11;
 const unsigned char PRESCALE_ONE_64 = 0b10;
