@@ -22,6 +22,7 @@ void calibrate()
     rotateDisk(0);
     calibrateTurret();
     calibrateDispenserThreshold();
+    calibrateIR();
     //read values
 }
 
