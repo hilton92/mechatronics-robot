@@ -21,10 +21,10 @@ void caseSwitch();
 void caseSwitch()
 {
     //initialize state variable and state
-    static unsigned char currentState = TURNFINDIR;
+    static unsigned char currentState = DRIVETOCORNERQUICK;
     
     //initialize state
-   changeState(TURNFINDIR, ENTER);
+   changeState(DRIVETOCORNERQUICK, ENTER);
     
     while(1)
     {
@@ -234,9 +234,9 @@ void caseSwitch()
                     
                     changeState(FACEFRONTBINLIGHT, EXIT);
                     
-                    currentState = WAITFORBINLIGHT;
+                    currentState = SHOOTGOALS;
                     
-                    changeState(WAITFORBINLIGHT, ENTER);
+                    changeState(SHOOTGOALS, ENTER);
                     
                     break;
                     
@@ -269,9 +269,9 @@ void caseSwitch()
 
                     changeState(FACERIGHTBINLIGHT, EXIT);
                     
-                    currentState = WAITFORBINLIGHT;
+                    currentState = SHOOTGOALS;
                     
-                    changeState(WAITFORBINLIGHT, ENTER);
+                    changeState(SHOOTGOALS, ENTER);
                     
                     break;
                     
@@ -304,9 +304,9 @@ void caseSwitch()
 
                     changeState(FACELEFTBINLIGHT, EXIT);
                     
-                    currentState = WAITFORBINLIGHT;
+                    currentState = SHOOTGOALS;
                     
-                    changeState(WAITFORBINLIGHT, ENTER);
+                    changeState(SHOOTGOALS, ENTER);
                     
                     break;
                     
@@ -421,7 +421,7 @@ void caseSwitch()
                         //exit the state
                         changeState(SHOOTGOALS, EXIT);
                         
-                        changeState(FACELEFTBINLIGHT, EXIT);
+                        //changeState(FACELEFTBINLIGHT, EXIT);
                         //update state variable
                         currentState = WAITFORBINLIGHT;
 

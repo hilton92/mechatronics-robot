@@ -20,6 +20,7 @@ void delayMicroseconds(float);
 int pulseIn(int);
 void shoot();
 void toogleShooter(int);
+void toogleSolenoid(unsigned char);
 
 
 
@@ -169,7 +170,11 @@ void getAverageIR()
 }
 void shoot()
 {
+    toggleSolenoid(ON);
+    delayMS(1000);
+    toggleSolenoid(OFF);
     decrementByOne(&ballCount);
+    
 }
 
 void toggleShooter(int onoff)
@@ -184,6 +189,18 @@ void toggleShooter(int onoff)
                 
     }
      
+}
+
+void toggleSolenoid(unsigned char toggle)
+{
+    if(toggle == ON)
+    {
+        _LATB8 = 1;
+    }
+    else if(toggle == OFF)
+    {
+        _LATB8 = 0;
+    }
 }
 
 #endif	/* FUNCTIONS_H */

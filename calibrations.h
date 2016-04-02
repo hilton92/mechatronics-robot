@@ -33,6 +33,7 @@ void calibrateDispenserThreshold()
 void calibrateTurret()
 {
     turnTurret(RIGHT);
+    setLow(&turretButtonPressed);
     while(1)
     {
         if(_RA4 == 1)

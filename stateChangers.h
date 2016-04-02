@@ -225,7 +225,7 @@ void faceLeftBinLight(unsigned char direction)
     }
     else
     {
-        rotateTurret(90,RIGHT);
+        //rotateTurret(90,RIGHT);
     }
 }
 
@@ -240,7 +240,7 @@ void faceRightBinLight(unsigned char direction)
     }
     else
     {
-        rotateTurret(90,LEFT);
+        //rotateTurret(90,LEFT);
     }
 }
 
@@ -268,7 +268,18 @@ void shootGoals(unsigned char direction)
     }
     else
     {
-        
+        if(currentBin == LEFTBIN)
+        {
+            rotateTurret(90,RIGHT);
+        }
+        else if(currentBin == RIGHTBIN)
+        {
+            rotateTurret(90,LEFT);
+        }
+        else
+        {
+            
+        }
     }
 }
 
