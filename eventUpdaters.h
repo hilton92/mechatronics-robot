@@ -70,6 +70,7 @@ void checkBinLightDetected() {
 
 void checkBinLightNotDetected()
 {
+    clearEvents();
     checkLeftBinLightDetected();
     checkRightBinLightDetected();
     checkFrontBinLightDetected();

@@ -116,6 +116,7 @@ void configureIOPins()
     _TRISA3 = 1; //Ultrasonic 2 input
     _TRISB4 = 0; //shooter toggle
     _TRISA4 = 1; //turret stopper button
+    _TRISB8 = 0; //solenoid
     
     //configure motor pins
     configurePWM(2,2,500); //left motor pin 4 RB0 
