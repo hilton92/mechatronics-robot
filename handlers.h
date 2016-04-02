@@ -79,6 +79,7 @@ void clearEvents()
     rightBinLightDetected = 0;
     frontBinLightDetected = 0;
     frontButtonsPressed = 0;
+    turretButtonPressed = 0;
 }
 
 
