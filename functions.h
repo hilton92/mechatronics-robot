@@ -20,6 +20,8 @@ void delayMicroseconds(float);
 int pulseIn(int);
 void shoot();
 void toogleShooter(int);
+void updateIRArray();
+int isMaxIR(IRPIN);
 
 
 
@@ -81,6 +83,36 @@ void delay10Microseconds(){
     setLow(&timer1Met);
 }
 
+void updateIRArray(){
+    float sum = 0;
+    int count = 0;
+    while (count < 70) {
+        sum = sum + readAD(15);
+        count = count + 1;
+    }
+    IRValArray[0] = sum / 70.0;
+    sum = 0;
+    count = 0;
+    while (count < 70) {
+        sum = sum + readAD(16);
+        count = count + 1;
+    }
+    IRValArray[1] = sum / 70.0;
+    sum = 0;
+    count = 0;
+    while (count < 70) {
+        sum = sum + readAD(17);
+        count = count + 1;
+    }
+    IRValArray[2] = sum / 70.0;
+    sum = 0;
+    count = 0;
+    while (count < 70) {
+        sum = sum + readAD(18);
+        count = count + 1;
+    }
+    IRValArray[3] = sum / 70.0;
+}
 
 void delayMS(int milliseconds) //max of 4 seconds!!!
 {
@@ -184,6 +216,50 @@ void toggleShooter(int onoff)
                 
     }
      
+}
+
+int isMaxIR(IRPIN){
+    int returnBool = 1;
+    float anV = 0;
+    switch(IRPIN){
+        case LEFTIR:
+            anV = readAD(18);
+            if (anV < readAD(17) || anV < readAD(15) || anV < readAD(16)){
+                returnBool = 0;
+            }
+            else{
+                returnBool = 1;
+            }
+            break;
+        case RIGHTIR:
+            anV = readAD(17);
+            if (anV < readAD(18) || anV < readAD(15) || anV < readAD(16)){
+                returnBool = 0;
+            }
+            else{
+                returnBool = 1;
+            }
+            break;
+        case FRONTIR:
+            anV = readAD(15);
+            if (anV < readAD(17) || anV < readAD(18) || anV < readAD(16)){
+                returnBool = 0;
+            }
+            else{
+                returnBool = 1;
+            }
+            break;
+        case REARIR:
+            anV = readAD(16);
+            if (anV < readAD(17) || anV < readAD(15) || anV < readAD(18)){
+                returnBool = 0;
+            }
+            else{
+                returnBool = 1;
+            }
+            break;
+    }
+    return returnBool;
 }
 
 #endif	/* FUNCTIONS_H */

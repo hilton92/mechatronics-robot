@@ -19,60 +19,37 @@ void configurePWM(int ocx, int timer, int period);
 //float readAD(int pin); //reads in value from 0 to 3.3 volts
 void configureTimerXInterrupt(int timer);
 void configureTimer(int timer, int perscaler);
-void calibrate();
+void calibrateIR();
 //---------------
 
 //configure timer
 
-
-void calibrate(){
-    float voltArr[4];
-    float sum = 0;
-    int count = 0;
-    while (count < 70) {
-        sum = sum + readAD(15);
-        count++;
-    }
-    voltArr[0] = sum / 70.0;
-    sum = 0;
-    count = 0;
-    while (count < 70) {
-        sum = sum + readAD(16);
-        count++;
-    }
-    voltArr[1] = sum / 70.0;
-    sum = 0;
-    count = 0;
-    while (count < 70) {
-        sum = sum + readAD(17);
-        count++;
-    }
-    voltArr[2] = sum / 70.0;
-    sum = 0;
-    count = 0;
-    while (count < 70) {
-        sum = sum + readAD(18);
-        count++;
-    }
-    voltArr[3] = sum / 70.0;
+//configure the IR sensors
+void calibrateIR(){
+    updateIRArray();
     //find the average of the lower 3 readings
-     for (int i = 0; i < 4; ++i)
+    int i = 0; 
+    while (i < 4)
     {
-        for (int j = i + 1; j < 4; ++j)
+        int j = i + 1;
+        while (j < 4)
         {
-            if (voltArr[i] > voltArr[j])
+            if (IRValArray[i] > IRValArray[j])
             {
-                float a =  voltArr[i];
-                voltArr[i] = voltArr[j];
-                voltArr[j] = a;
+                float a =  IRValArray[i];
+                IRValArray[i] = IRValArray[j];
+                IRValArray[j] = a;
             }
+            j = j + 1;
         }
+        i = i + 1;
     }
-    float t = voltArr[0] + voltArr[1] + voltArr[2];
-    t = t / 3.0;
+    float t = IRValArray[0] + IRValArray[1] + IRValArray[2];
+    IRthreshold = (t / 3.0) + IRDELTA;
+    MAXIRThreshold = IRValArray[3];//save the max voltage
     //t is the value to calibrate to
-    
 }
+
 void configureTimer(int timer, int prescaler)
 {
     switch(timer)

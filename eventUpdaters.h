@@ -33,10 +33,6 @@ void checkFrontButtonsPressed();
 //----------------------------------------------
 
 void checkDispenserLightDetected() {
-    static float max = 0;
-    static int counter = 0;
-    static float prevVal = 0;
-    
     float sum = 0;
     int count = 0;
     while (count < 70) {
@@ -44,29 +40,9 @@ void checkDispenserLightDetected() {
         count++;
     }
     float voltageFront = sum / 70.0;
-    if (voltageFront > IRDISPENSERTHRESHOLD){
+    if (voltageFront > IRthreshold && (isMaxIR(REARIR) == 1)){
         setHigh(&dispenserLightDetected);
     }
-    
-    //code to find max threshold!!!
-    /*if (((voltageFront - prevVal) < IRDELTA) && ((prevVal - voltageFront) < IRDELTA)) {
-        
-        if (voltageFront > max) {
-            //set a new max
-            max = voltageFront;
-            counter = 0;
-        } 
-        else {
-            //increment the counter
-            counter = counter + 1;
-        }
-    }
-    if ((counter > 50) && (voltageFront > IRDISPENSERTHRESHOLD)){
-        setHigh(&dispenserLightDetected);
-        counter = 0;
-        
-    }
-    prevVal = voltageFront;*/
     
 }
 
@@ -82,7 +58,7 @@ void checkDispenserLightThresholdMet() {
     }
 
     float voltageFront = sum / 70.0;
-    if (voltageFront > IRDISPENSERTHRESHOLD) {
+    if (voltageFront > IRthreshold) {
         setHigh(&dispenserLightThresholdMet);
     }
 }
@@ -140,7 +116,7 @@ void checkFrontBinLightDetected() {
     }
 
     float voltageFront = sum / 70.0;
-    if (voltageFront > IRBINTHRESHOLD) {
+    if (voltageFront > IRthreshold && (isMaxIR(FRONTIR) == 1) ) {
         setHigh(&frontBinLightDetected);
     }
 }
@@ -155,7 +131,7 @@ void checkRightBinLightDetected() {
     }
 
     float voltageRight = sum / 70.0;
-    if (voltageRight > IRBINTHRESHOLD) {
+    if (voltageRight > IRthreshold && (isMaxIR(RIGHTIR) == 1)) {
         setHigh(&rightBinLightDetected);
     }
 }
@@ -170,7 +146,7 @@ void checkLeftBinLightDetected() {
     }
 
     float voltageLeft = sum / 70.0;
-    if (voltageLeft > IRBINTHRESHOLD) {
+    if (voltageLeft > IRthreshold && (isMaxIR(LEFTIR) == 1)) {
         setHigh(&leftBinLightDetected);
     }
 }

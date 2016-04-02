@@ -34,6 +34,8 @@ enum {OFF, ON};
 enum {ENTER, EXIT};
 
 enum {LEFTBIN, RIGHTBIN, FRONTBIN};
+
+enum IRPIN {LEFTIR, RIGHTIR, FRONTIR, REARIR};
 //global constants
 const unsigned char PRESCALE_ONE_256 = 0b11;
 const unsigned char PRESCALE_ONE_64 = 0b10;
@@ -48,7 +50,7 @@ const float IRBINTHRESHOLD = 1.45;
 const float IRDISPENSERDETECTED = 1.6;
 const float IRDISPENSERTHRESHOLD = 1.4;
 const unsigned int TRIGGERDELAY = 650;
-const float IRDELTA = 0.2;
+const float IRDELTA = 0.35;
 
 #endif	/* ENUMS_H */
 
