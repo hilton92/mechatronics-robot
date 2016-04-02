@@ -20,7 +20,7 @@ void delayMicroseconds(float);
 int pulseIn(int);
 void shoot();
 void toogleShooter(int);
-void toogleSolenoid(unsigned char);
+void toggleSolenoid(unsigned char);
 
 
 
