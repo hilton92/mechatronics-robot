@@ -19,36 +19,11 @@ void configurePWM(int ocx, int timer, int period);
 //float readAD(int pin); //reads in value from 0 to 3.3 volts
 void configureTimerXInterrupt(int timer);
 void configureTimer(int timer, int perscaler);
-void calibrateIR();
 //---------------
 
 //configure timer
 
-//configure the IR sensors
-void calibrateIR(){
-    updateIRArray();
-    //find the average of the lower 3 readings
-    int i = 0; 
-    while (i < 4)
-    {
-        int j = i + 1;
-        while (j < 4)
-        {
-            if (IRValArray[i] > IRValArray[j])
-            {
-                float a =  IRValArray[i];
-                IRValArray[i] = IRValArray[j];
-                IRValArray[j] = a;
-            }
-            j = j + 1;
-        }
-        i = i + 1;
-    }
-    float t = IRValArray[0] + IRValArray[1] + IRValArray[2];
-    IRthreshold = (t / 3.0) + IRDELTA;
-    MAXIRThreshold = IRValArray[3];//save the max voltage
-    //t is the value to calibrate to
-}
+
 
 void configureTimer(int timer, int prescaler)
 {
@@ -126,10 +101,10 @@ void configureIOPins()
     configurePWM(1,4,12500); //250 to 950 
     
     //Configure the analog pins for IR
-    chooseADpin(15);
-    chooseADpin(16);
-    chooseADpin(17);
-    chooseADpin(18);
+    chooseADpin(15); //front IR
+    chooseADpin(16); //Back IR
+    chooseADpin(17); ///Right IR
+    chooseADpin(18); //left IR
   
 }
 

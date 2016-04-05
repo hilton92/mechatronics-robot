@@ -40,7 +40,7 @@ void checkDispenserLightDetected() {
         count++;
     }
     float voltageFront = sum / 70.0;
-    if (voltageFront > IRthreshold && (isMaxIR(REARIR) == 1)){
+    if (voltageFront > dispenserThreshold && (isMaxIR(REARIR) == 1)){
         setHigh(&dispenserLightDetected);
     }
     
@@ -111,6 +111,7 @@ void checkFrontBinLightDetected() {
     float sum = 0;
 
     int count = 0;
+    
     while (count < 70) {
         sum = sum + readAD(15);
         count++;

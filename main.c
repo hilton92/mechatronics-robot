@@ -66,8 +66,10 @@ int currentBin = 0;
 //other globals
 int ballCount = 0;
 float IRthreshold = 0;
-float MAXIRThreshold = 0;
+//float MAXIRThreshold = 0;
 float IRValArray[4];
+float dispenserThreshold;
+int firstTime;
 
 int main()
 {

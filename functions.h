@@ -229,7 +229,7 @@ int isMaxIR(int IRPIN){
     switch(IRPIN){
         case LEFTIR:
             anV = readAD(18);
-            if (anV < readAD(17) || anV < readAD(15) || anV < readAD(16)){
+            if (anV < readAD(17) || anV < readAD(15) /*|| anV < readAD(16)*/){
                 returnBool = 0;
             }
             else{
@@ -238,7 +238,7 @@ int isMaxIR(int IRPIN){
             break;
         case RIGHTIR:
             anV = readAD(17);
-            if (anV < readAD(18) || anV < readAD(15) || anV < readAD(16)){
+            if (anV < readAD(18) || anV < readAD(15)/* || anV < readAD(16)*/){
                 returnBool = 0;
             }
             else{
@@ -247,7 +247,7 @@ int isMaxIR(int IRPIN){
             break;
         case FRONTIR:
             anV = readAD(15);
-            if (anV < readAD(17) || anV < readAD(18) || anV < readAD(16)){
+            if (anV < readAD(17) || anV < readAD(18)/* || anV < readAD(16)*/){
                 returnBool = 0;
             }
             else{

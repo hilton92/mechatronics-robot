@@ -21,10 +21,10 @@ void caseSwitch();
 void caseSwitch()
 {
     //initialize state variable and state
-    static unsigned char currentState = DRIVETOCORNERQUICK;
+    static unsigned char currentState = DRIVETOMIDDLE;
    
     //initialize state
-   changeState(DRIVETOCORNERQUICK, ENTER);
+   changeState(DRIVETOMIDDLE, ENTER);
     
     while(1)
     {

@@ -118,7 +118,7 @@ void turnFindIR(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
     if(direction == ENTER)
     {
-        turn(MOTORLOWSPEED, LEFT);
+        turn(MOTORLOWLOWSPEED, LEFT);
     }
     else
     {
@@ -197,6 +197,11 @@ void driveToMiddle(unsigned char direction)
     {
         rotateTurret(140, LEFT);
         toggleShooter(ON);
+        if(firstTime)
+        {
+            //recalibrate Bin IR
+            calibrateIR(BIN);
+        }
     }
 }
 

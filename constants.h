@@ -36,12 +36,15 @@ enum {ENTER, EXIT};
 enum {LEFTBIN, RIGHTBIN, FRONTBIN};
 
 enum {LEFTIR, RIGHTIR, FRONTIR, REARIR};
+
+enum {DISPENSER, BIN};
 //global constants
 const unsigned char PRESCALE_ONE_256 = 0b11;
 const unsigned char PRESCALE_ONE_64 = 0b10;
 const unsigned char PRESCALE_ONE_8 = 0b01;
 const unsigned char PRESCALE_ONE_1 = 0b00;
 const int MOTORLOWSPEED = 1300; //period for motors
+const int MOTORLOWLOWSPEED = 1500; //period for motors
 const int MOTORHIGHSPEED = 600; //period for motors
 const int TURRETSPEED = 850; //turret speed 
 const unsigned int QUARTERTURNCOUNT = 492;

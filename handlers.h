@@ -62,8 +62,10 @@ extern int currentBin;
 //other globals
 extern int ballCount;
 extern float IRthreshold;
-extern float MAXIRThreshold;
+//extern float MAXIRThreshold;
 extern float IRValArray[4];
+extern float dispenserThreshold;
+extern int firstTime;
 //Function Definitions----------------------------------------
 
 
@@ -99,6 +101,7 @@ void initializeEvents()
     clearEventInfo();
     ballCount = 0;
     timer5Met = 0;
+    firstTime = 1;
 }
 
 void setHigh(int *variable)
