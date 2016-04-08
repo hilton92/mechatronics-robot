@@ -84,7 +84,7 @@ void configureIOPins()
     _TRISA0 = 0; //left motor direction pin 2
     _TRISA1 = 0; //right motor direction pin 3
     _TRISB9 = 0; //turret direction pin 13
-    _TRISB7 = 1; //front bumper buttons
+    _TRISB7 = 1; //right corner button
     _TRISA6 = 0; //servo motor
     _TRISB2 = 1; //Ultrasonic 1 input
     _TRISA2 = 0; //Ultrasonic 1 output
@@ -92,6 +92,7 @@ void configureIOPins()
     _TRISB4 = 0; //shooter toggle
     _TRISA4 = 1; //turret stopper button
     _TRISB8 = 0; //solenoid
+    _TRISA2 = 1; //left corner button
     
     //configure motor pins
     configurePWM(2,2,500); //left motor pin 4 RB0 
@@ -105,6 +106,7 @@ void configureIOPins()
     chooseADpin(16); //Back IR
     chooseADpin(17); ///Right IR
     chooseADpin(18); //left IR
+    chooseADpin(8);
   
 }
 

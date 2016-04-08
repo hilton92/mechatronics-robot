@@ -21,10 +21,10 @@ void caseSwitch();
 void caseSwitch()
 {
     //initialize state variable and state
-    static unsigned char currentState = DRIVETOMIDDLE;
+    static unsigned char currentState = TURNFINDIR;
    
     //initialize state
-   changeState(DRIVETOMIDDLE, ENTER);
+   changeState(TURNFINDIR, ENTER);
     
     while(1)
     {
@@ -57,20 +57,6 @@ void caseSwitch()
                         
                         break;
                     }
-
-//                    //check other state specific events
-//                    else if(getEvent(&binLightDetected) && getEventInfo(&ballsFull))
-//                    {
-//
-//                        //update state variable
-//                        currentState = FACEBIN;
-//
-//                        //change to the state
-//                        changeToState(FACEBIN);
-//
-//                        //break out of the while loop
-//                        break;
-//                    }
 
                 }
                 break;
@@ -122,20 +108,21 @@ void caseSwitch()
                 while(1)
                 { 
                     //state specific updaters
-                    checkFrontButtonsPressed();
+                    checkLeftButtonPressed();
+                    checkRightButtonPressed();
 
                     
                     //check event status
-                    if(getEvent(&frontButtonsPressed))
+                    if(getEvent(&rightButtonPressed) || getEvent(&leftButtonPressed))
                     {
                         //exit state
                         changeState(DRIVETOCORNERQUICK, EXIT);
                         
                         //update state variable
-                        currentState = LOADBALLS;
+                        currentState = DRIVEINTOCORNER;
 
                         //change to the state
-                        changeState(LOADBALLS, ENTER);
+                        changeState(DRIVEINTOCORNER, ENTER);
 
                         //break out of the while loop
                         break;
@@ -148,39 +135,26 @@ void caseSwitch()
 
                 while(1)
                 { 
-                    //state specific updaters
-                    checkTwoSonicSensorThresholdMet();
-                    
-                    
+                   //state specific updaters
+                    checkLeftButtonPressed();
+                    checkRightButtonPressed();
 
-                    /*
+                    
                     //check event status
-                    else if(getEventStatus(TWOSONICSENSORTHRESHOLDMET) && !getEventStatus(BALLSFULL))
+                    if(getEvent(&rightButtonPressed) && getEvent(&leftButtonPressed))
                     {
+                        //exit state
+                        changeState(DRIVEINTOCORNER, EXIT);
+                        
                         //update state variable
                         currentState = LOADBALLS;
 
                         //change to the state
-                        changeToState(LOADBALLS);
+                        changeState(LOADBALLS, ENTER);
 
                         //break out of the while loop
                         break;
                     }
-
-                    //check other state specific events
-                    else if(getEventStatus(TWOSONICSENSORTHRESHOLDMET) && getEventStatus(BALLSFULL))
-                    {
-
-                        //update state variable
-                        currentState = BACKUPTOSHOOT;
-
-                        //change to the state
-                        changeToState(BACKUPTOSHOOT);
-
-                        //break out of the while loop
-                        break;
-                    }
-                */
                 }
                 break;
 

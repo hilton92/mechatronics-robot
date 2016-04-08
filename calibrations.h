@@ -80,16 +80,16 @@ void calibrateIR(unsigned char irChoice){
     {
         //calculate delta
         maxIRThreshold = IRValArray[3];//save the max voltage
-        float difference = maxIRThreshold - t;
+        float difference = maxIRThreshold - (t / 3.0);
         float delta = 5.0/6.0 * difference;        
-        dispenserThreshold = (t / 3.0) + delta;   
+        dispenserThreshold = (t / 3.0) + DISPENSERIRDELTA;   
     }
     else if(irChoice == BIN)
     {
         maxIRThreshold = IRValArray[3];//save the max voltage
-        float difference = maxIRThreshold - t;
-        float delta = 2.0/3.0 * difference;        
-        IRthreshold = (t / 3.0) + delta; 
+        float difference = maxIRThreshold - (t / 3.0);
+        float delta = 5.0/6.0 * difference;        
+        IRthreshold = (t / 3.0) + BINIRDELTA; 
     }
 
  

@@ -179,18 +179,40 @@ void rotateDisk(float degree) // 0 to 180
 
 void triggerLaser()
 {
-    rotateDisk(180);
+    rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
     rotateDisk(0);
     delayMS(TRIGGERDELAY);
     
-    rotateDisk(180);
+    rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
     rotateDisk(0);
     delayMS(TRIGGERDELAY);
     
-    rotateDisk(180);
+    rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
+    rotateDisk(0);
+    delayMS(TRIGGERDELAY);
+    
+    rotateDisk(TRIGGERDEGREE);
+    delayMS(TRIGGERDELAY);
+    rotateDisk(0);
+    delayMS(TRIGGERDELAY);
+    
+    rotateDisk(TRIGGERDEGREE);
+    delayMS(TRIGGERDELAY);
+    rotateDisk(0);
+    delayMS(TRIGGERDELAY);
+    
+//    rotateDisk(TRIGGERDEGREE);
+//    delayMS(TRIGGERDELAY);
+//    rotateDisk(0);
+//    delayMS(TRIGGERDELAY);
+//    
+//    rotateDisk(TRIGGERDEGREE);
+//    delayMS(TRIGGERDELAY);
+//    rotateDisk(0);
+//    delayMS(TRIGGERDELAY);
 //    rotateDisk(0);
 //    delayMS(500);
     
@@ -203,9 +225,10 @@ void getAverageIR()
 void shoot()
 {
     toggleSolenoid(ON);
-    delayMS(1000);
+    delayMS(SOLENOIDDELAY);
     toggleSolenoid(OFF);
     decrementByOne(&ballCount);
+    delayMS(1000);
     
 }
 

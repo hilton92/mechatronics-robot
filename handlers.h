@@ -49,7 +49,8 @@ extern int buttonPressed;
 extern int leftBinLightDetected;
 extern int rightBinLightDetected;
 extern int frontBinLightDetected;
-extern int frontButtonsPressed;
+extern int rightButtonPressed;
+extern int leftButtonPressed;
 extern int turretButtonPressed;
 
 //event info variables
@@ -83,7 +84,8 @@ void clearEvents()
     leftBinLightDetected = 0;
     rightBinLightDetected = 0;
     frontBinLightDetected = 0;
-    frontButtonsPressed = 0;
+    rightButtonPressed = 0;
+    leftButtonPressed = 0;
     turretButtonPressed = 0;
 }
 

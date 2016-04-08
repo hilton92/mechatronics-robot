@@ -12,6 +12,7 @@
 #include"functions.h"
 #include"caseSwitch.h"
 #include"calibrations.h"
+#include"quadratic.h"
 
 //-----------------------------------------------------
 // Function STUBS
@@ -28,7 +29,7 @@ int mainTest();
 
 _FOSCSEL(FNOSC_FRC & SOSCSRC_DIG);
 
-_FICD(ICS_PGx3);
+_FICD(ICS_PGx1);
 
 //_FOSC(OSCIOFNC_OFF);
 
@@ -50,7 +51,8 @@ int buttonPressed = 0;
 int leftBinLightDetected = 0;
 int rightBinLightDetected = 0;
 int frontBinLightDetected = 0;
-int frontButtonsPressed = 0;
+int rightButtonPressed = 0;
+int leftButtonPressed = 0;
 int turretButtonPressed = 0;
 
 
@@ -78,7 +80,7 @@ int main()
     if(testing)
     {
         mainConfig();
-       // mainTest();
+        mainTest();
         while(1);
         
     }
@@ -122,13 +124,13 @@ void testULTRASONIC();
 int mainTest()
 {
     
-    rotateTurret(150, LEFT);
-//    
+//    rotateTurret(150, LEFT);
+    findDispenser();
     while(1)
     {
-    checkFrontBinLightDetected();
-    checkRightBinLightDetected();
-    checkLeftBinLightDetected();
+//    checkFrontBinLightDetected();
+//    checkRightBinLightDetected();
+//    checkLeftBinLightDetected();
 //    
 //    if(frontBinLightDetected)
 //    {
@@ -146,21 +148,22 @@ int mainTest()
 //        rotateTurret(15, LEFT);
 //    }
     
-    checkDispenserLightDetected();
-    if(dispenserLightDetected)
-    {
-        rotateTurret(15, RIGHT);
-        rotateTurret(15,LEFT);
-    }
-    
-    
-    
-    clearEvents();
+//    checkDispenserLightDetected();
+//    if(dispenserLightDetected)
+//    {
+//        rotateTurret(15, RIGHT);
+//        rotateTurret(15,LEFT);
+//    }
+//    
+//    
+//    
+//    clearEvents();
     //OC1R = 1000;
     //rotateDisk(180);
     //testULTRASONIC();
     //triggerLaser();
     //turn(MOTORLOWSPEED, LEFT);
+        
     
 }
     return 0;

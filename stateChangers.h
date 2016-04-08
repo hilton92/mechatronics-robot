@@ -31,6 +31,8 @@ void setToNullState();
 
 void changeState(unsigned char state, unsigned char direction)
 {
+    clearEventInfo();
+    
     if(direction == EXIT)
     {
         //reset the events
@@ -145,8 +147,9 @@ void driveToCornerQuick(unsigned char direction)
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
-    {
-        driveStraight(MOTORLOWSPEED, FORWARD);
+    {      
+        delayMS(500);
+        driveStraight(MOTORHIGHSPEED, FORWARD);
         calibrateTurret();
         toggleShooter(OFF);
     }
@@ -162,7 +165,7 @@ void driveIntoCorner(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
     {
-
+        driveStraight(MOTORLOWLOWSPEED, FORWARD);
     }
     else
     {
@@ -181,7 +184,7 @@ void loadBalls(unsigned char direction)
     else
     {
         clearEventInfo();
-        setBallsFull();
+        setBallsFull();        
     }
 }
 
@@ -191,17 +194,16 @@ void driveToMiddle(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
     {
+        
         driveStraight(MOTORLOWSPEED,BACKWARD);      
     }
     else
     {
-        rotateTurret(140, LEFT);
+        rotateTurret(140.35, LEFT);
         toggleShooter(ON);
-        if(firstTime)
-        {
-            //recalibrate Bin IR
-            calibrateIR(BIN);
-        }
+        //if(firstTime)
+        //calibrateIR(BIN);
+        
     }
 }
 
