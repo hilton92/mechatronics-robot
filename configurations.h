@@ -64,12 +64,13 @@ void configureTimers()
     configureTimer(5,PRESCALE_ONE_256);  //For the timer function
     configureTimer(3,PRESCALE_ONE_8);  //Turret Motor
     configureTimer(4,PRESCALE_ONE_8); //Servo Motor
-    configureTimer(1,PRESCALE_ONE_1); //for the Ultrasonic counter
+    configureTimer(1,PRESCALE_ONE_256); //for the Ultrasonic counter
 }
 
 void configureTimerInterrupts()
 {
     configureTimerXInterrupt(1);
+    PR1 = 15625;
     configureTimerXInterrupt(2);
     configureTimerXInterrupt(5);
     configureTimerXInterrupt(3);

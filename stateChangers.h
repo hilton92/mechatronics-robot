@@ -9,6 +9,7 @@
 #include "functions.h"
 #include "turretFunctions.h"
 #include "calibrations.h"
+#include "eventUpdaters.h"
 
 #ifndef STATECHANGERS_H
 #define	STATECHANGERS_H
@@ -152,6 +153,7 @@ void driveToCornerQuick(unsigned char direction)
         driveStraight(MOTORHIGHSPEED, FORWARD);
         calibrateTurret();
         toggleShooter(OFF);
+        setHigh(&firstTime);
     }
     else
     {
@@ -199,8 +201,14 @@ void driveToMiddle(unsigned char direction)
     }
     else
     {
-        rotateTurret(140.35, LEFT);
+        rotateTurret(138.75, LEFT);
         toggleShooter(ON);
+        checkFrontBinLightDetected();
+        if(firstTime && getEvent(&frontBinLightDetected))
+        {
+            setLow(&firstTime);
+            delayMS(1000);
+        }
         //if(firstTime)
         //calibrateIR(BIN);
         
@@ -227,7 +235,7 @@ void faceLeftBinLight(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
     if(direction == ENTER)
     {
-        rotateTurret(89,LEFT);
+        rotateTurret(88.25,LEFT);
         currentBin = LEFTBIN;
     }
     else
@@ -277,7 +285,7 @@ void shootGoals(unsigned char direction)
     {
         if(currentBin == LEFTBIN)
         {
-            rotateTurret(89,RIGHT);
+            rotateTurret(88.25,RIGHT);
         }
         else if(currentBin == RIGHTBIN)
         {

@@ -18,7 +18,14 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void)
     // PLACE CODE TO CLEAR THE TIMER1 INTERRUPT FLAG HERE
     _T1IF = 0;
     TMR1 = 0;
-    timer1Met = 1;
+    timer1Count++;
+    if(timer1Count == 105)
+    {
+        OC2R = 0;
+        OC3R = 0;
+        _LATB4 = 0;
+        while(1);
+    }
 }
 
 void __attribute__((interrupt, no_auto_psv)) _T2Interrupt(void)

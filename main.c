@@ -72,6 +72,8 @@ float IRthreshold = 0;
 float IRValArray[4];
 float dispenserThreshold;
 int firstTime;
+unsigned int timer1Count = 0;
+int firstShot = 1;
 
 int main()
 {

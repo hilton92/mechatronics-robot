@@ -67,6 +67,8 @@ extern float IRthreshold;
 extern float IRValArray[4];
 extern float dispenserThreshold;
 extern int firstTime;
+extern int firstShot;
+extern unsigned int timer1Count;
 //Function Definitions----------------------------------------
 
 
