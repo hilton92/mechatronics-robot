@@ -227,7 +227,7 @@ void faceLeftBinLight(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
     if(direction == ENTER)
     {
-        rotateTurret(90,LEFT);
+        rotateTurret(89,LEFT);
         currentBin = LEFTBIN;
     }
     else
@@ -277,7 +277,7 @@ void shootGoals(unsigned char direction)
     {
         if(currentBin == LEFTBIN)
         {
-            rotateTurret(90,RIGHT);
+            rotateTurret(89,RIGHT);
         }
         else if(currentBin == RIGHTBIN)
         {

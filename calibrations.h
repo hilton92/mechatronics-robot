@@ -21,7 +21,7 @@ void calibrateIR(unsigned char);
 
 void calibrate()
 {
-    rotateDisk(0);
+    rotateDisk(TRIGGERDEGREE2);
     calibrateTurret();
     calibrateDispenserThreshold();
     calibrateIR(BIN);

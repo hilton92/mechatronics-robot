@@ -181,27 +181,27 @@ void triggerLaser()
 {
     rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
-    rotateDisk(0);
+    rotateDisk(TRIGGERDEGREE2);
     delayMS(TRIGGERDELAY);
     
     rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
-    rotateDisk(0);
+    rotateDisk(TRIGGERDEGREE2);
     delayMS(TRIGGERDELAY);
     
     rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
-    rotateDisk(0);
+    rotateDisk(TRIGGERDEGREE2);
     delayMS(TRIGGERDELAY);
     
     rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
-    rotateDisk(0);
+    rotateDisk(TRIGGERDEGREE2);
     delayMS(TRIGGERDELAY);
     
     rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
-    rotateDisk(0);
+    rotateDisk(TRIGGERDEGREE2);
     delayMS(TRIGGERDELAY);
     
 //    rotateDisk(TRIGGERDEGREE);
