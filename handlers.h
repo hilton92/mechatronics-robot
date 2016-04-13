@@ -49,7 +49,8 @@ extern int buttonPressed;
 extern int leftBinLightDetected;
 extern int rightBinLightDetected;
 extern int frontBinLightDetected;
-extern int frontButtonsPressed;
+extern int rightButtonPressed;
+extern int leftButtonPressed;
 extern int turretButtonPressed;
 
 //event info variables
@@ -62,8 +63,12 @@ extern int currentBin;
 //other globals
 extern int ballCount;
 extern float IRthreshold;
-extern float MAXIRThreshold;
+//extern float MAXIRThreshold;
 extern float IRValArray[4];
+extern float dispenserThreshold;
+extern int firstTime;
+extern int firstShot;
+extern unsigned int timer1Count;
 //Function Definitions----------------------------------------
 
 
@@ -81,7 +86,8 @@ void clearEvents()
     leftBinLightDetected = 0;
     rightBinLightDetected = 0;
     frontBinLightDetected = 0;
-    frontButtonsPressed = 0;
+    rightButtonPressed = 0;
+    leftButtonPressed = 0;
     turretButtonPressed = 0;
 }
 
@@ -99,6 +105,7 @@ void initializeEvents()
     clearEventInfo();
     ballCount = 0;
     timer5Met = 0;
+    firstTime = 1;
 }
 
 void setHigh(int *variable)

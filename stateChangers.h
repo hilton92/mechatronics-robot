@@ -9,6 +9,7 @@
 #include "functions.h"
 #include "turretFunctions.h"
 #include "calibrations.h"
+#include "eventUpdaters.h"
 
 #ifndef STATECHANGERS_H
 #define	STATECHANGERS_H
@@ -31,6 +32,8 @@ void setToNullState();
 
 void changeState(unsigned char state, unsigned char direction)
 {
+    clearEventInfo();
+    
     if(direction == EXIT)
     {
         //reset the events
@@ -118,7 +121,7 @@ void turnFindIR(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
     if(direction == ENTER)
     {
-        turn(MOTORLOWSPEED, LEFT);
+        turn(MOTORLOWLOWSPEED, LEFT);
     }
     else
     {
@@ -145,10 +148,12 @@ void driveToCornerQuick(unsigned char direction)
     //reset timers
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
-    {
-        driveStraight(MOTORLOWSPEED, FORWARD);
+    {      
+        delayMS(500);
+        driveStraight(MOTORHIGHSPEED, FORWARD);
         calibrateTurret();
         toggleShooter(OFF);
+        setHigh(&firstTime);
     }
     else
     {
@@ -162,7 +167,7 @@ void driveIntoCorner(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
     {
-
+        driveStraight(MOTORLOWLOWSPEED, FORWARD);
     }
     else
     {
@@ -181,7 +186,7 @@ void loadBalls(unsigned char direction)
     else
     {
         clearEventInfo();
-        setBallsFull();
+        setBallsFull();        
     }
 }
 
@@ -191,12 +196,22 @@ void driveToMiddle(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded)
     if(direction == ENTER)
     {
+        
         driveStraight(MOTORLOWSPEED,BACKWARD);      
     }
     else
     {
-        rotateTurret(140, LEFT);
+        rotateTurret(138.75, LEFT);
         toggleShooter(ON);
+        checkFrontBinLightDetected();
+        if(firstTime && getEvent(&frontBinLightDetected))
+        {
+            setLow(&firstTime);
+            delayMS(1000);
+        }
+        //if(firstTime)
+        //calibrateIR(BIN);
+        
     }
 }
 
@@ -220,7 +235,7 @@ void faceLeftBinLight(unsigned char direction)
     //set or unset certain variables(i.e. ballsLoaded, periodCount)
     if(direction == ENTER)
     {
-        rotateTurret(90,LEFT);
+        rotateTurret(88.25,LEFT);
         currentBin = LEFTBIN;
     }
     else
@@ -270,7 +285,7 @@ void shootGoals(unsigned char direction)
     {
         if(currentBin == LEFTBIN)
         {
-            rotateTurret(90,RIGHT);
+            rotateTurret(88.25,RIGHT);
         }
         else if(currentBin == RIGHTBIN)
         {

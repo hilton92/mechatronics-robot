@@ -28,7 +28,8 @@ void checkButtonPressed();
 void checkLeftBinLightDetected();
 void checkRightBinLightDetected();
 void checkFrontBinLightDetected();
-void checkFrontButtonsPressed();
+void checkLeftButtonPressed();
+void checkRightButtonPressed();
 
 //----------------------------------------------
 
@@ -40,7 +41,7 @@ void checkDispenserLightDetected() {
         count++;
     }
     float voltageFront = sum / 70.0;
-    if (voltageFront > IRthreshold && (isMaxIR(REARIR) == 1)){
+    if (voltageFront > dispenserThreshold /*&& (isMaxIR(REARIR) == 1)*/){
         setHigh(&dispenserLightDetected);
     }
     
@@ -111,13 +112,14 @@ void checkFrontBinLightDetected() {
     float sum = 0;
 
     int count = 0;
+    
     while (count < 70) {
         sum = sum + readAD(15);
         count++;
     }
 
     float voltageFront = sum / 70.0;
-    if (voltageFront > IRthreshold && (isMaxIR(FRONTIR) == 1) ) {
+    if (voltageFront > IRthreshold/* && (isMaxIR(FRONTIR) == 1) */) {
         setHigh(&frontBinLightDetected);
     }
 }
@@ -132,7 +134,7 @@ void checkRightBinLightDetected() {
     }
 
     float voltageRight = sum / 70.0;
-    if (voltageRight > IRthreshold && (isMaxIR(RIGHTIR) == 1)) {
+    if (voltageRight > IRthreshold /*&& (isMaxIR(RIGHTIR) == 1)*/) {
         setHigh(&rightBinLightDetected);
     }
 }
@@ -147,20 +149,26 @@ void checkLeftBinLightDetected() {
     }
 
     float voltageLeft = sum / 70.0;
-    if (voltageLeft > IRthreshold && (isMaxIR(LEFTIR) == 1)) {
+    if (voltageLeft > IRthreshold/* && (isMaxIR(LEFTIR) == 1)*/) {
         setHigh(&leftBinLightDetected);
     }
 }
 
-void checkFrontButtonsPressed() {
-    if (_RB7 == 1) {
-        setHigh(&frontButtonsPressed);
+void checkRightButtonPressed() 
+{
+    if (_RB7 == 1) 
+    {
+        setHigh(&rightButtonPressed);
     }
 }
 
-
-
-
+void checkLeftButtonPressed()
+{
+    if (_RA2 == 1)
+    {
+        setHigh(&leftButtonPressed);
+    }
+}
 
 
 #endif	/* EVENTUPDATERS_H */

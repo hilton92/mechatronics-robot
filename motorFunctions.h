@@ -116,6 +116,8 @@ void rotateXDegrees(int degree)
     {          
     }
     
+    toggleMotorsOff();
+    
 }
 
 void driveStraight(int speed, int direction)

@@ -19,36 +19,11 @@ void configurePWM(int ocx, int timer, int period);
 //float readAD(int pin); //reads in value from 0 to 3.3 volts
 void configureTimerXInterrupt(int timer);
 void configureTimer(int timer, int perscaler);
-void calibrateIR();
 //---------------
 
 //configure timer
 
-//configure the IR sensors
-void calibrateIR(){
-    updateIRArray();
-    //find the average of the lower 3 readings
-    int i = 0; 
-    while (i < 4)
-    {
-        int j = i + 1;
-        while (j < 4)
-        {
-            if (IRValArray[i] > IRValArray[j])
-            {
-                float a =  IRValArray[i];
-                IRValArray[i] = IRValArray[j];
-                IRValArray[j] = a;
-            }
-            j = j + 1;
-        }
-        i = i + 1;
-    }
-    float t = IRValArray[0] + IRValArray[1] + IRValArray[2];
-    IRthreshold = (t / 3.0) + IRDELTA;
-    MAXIRThreshold = IRValArray[3];//save the max voltage
-    //t is the value to calibrate to
-}
+
 
 void configureTimer(int timer, int prescaler)
 {
@@ -89,12 +64,13 @@ void configureTimers()
     configureTimer(5,PRESCALE_ONE_256);  //For the timer function
     configureTimer(3,PRESCALE_ONE_8);  //Turret Motor
     configureTimer(4,PRESCALE_ONE_8); //Servo Motor
-    configureTimer(1,PRESCALE_ONE_1); //for the Ultrasonic counter
+    configureTimer(1,PRESCALE_ONE_256); //for the Ultrasonic counter
 }
 
 void configureTimerInterrupts()
 {
     configureTimerXInterrupt(1);
+    PR1 = 15625;
     configureTimerXInterrupt(2);
     configureTimerXInterrupt(5);
     configureTimerXInterrupt(3);
@@ -109,7 +85,7 @@ void configureIOPins()
     _TRISA0 = 0; //left motor direction pin 2
     _TRISA1 = 0; //right motor direction pin 3
     _TRISB9 = 0; //turret direction pin 13
-    _TRISB7 = 1; //front bumper buttons
+    _TRISB7 = 1; //right corner button
     _TRISA6 = 0; //servo motor
     _TRISB2 = 1; //Ultrasonic 1 input
     _TRISA2 = 0; //Ultrasonic 1 output
@@ -117,6 +93,7 @@ void configureIOPins()
     _TRISB4 = 0; //shooter toggle
     _TRISA4 = 1; //turret stopper button
     _TRISB8 = 0; //solenoid
+    _TRISA2 = 1; //left corner button
     
     //configure motor pins
     configurePWM(2,2,500); //left motor pin 4 RB0 
@@ -126,10 +103,11 @@ void configureIOPins()
     configurePWM(1,4,12500); //250 to 950 
     
     //Configure the analog pins for IR
-    chooseADpin(15);
-    chooseADpin(16);
-    chooseADpin(17);
-    chooseADpin(18);
+    chooseADpin(15); //front IR
+    chooseADpin(16); //Back IR
+    chooseADpin(17); ///Right IR
+    chooseADpin(18); //left IR
+    chooseADpin(8);
   
 }
 

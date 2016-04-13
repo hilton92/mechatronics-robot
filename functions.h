@@ -179,18 +179,40 @@ void rotateDisk(float degree) // 0 to 180
 
 void triggerLaser()
 {
-    rotateDisk(180);
+    rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
-    rotateDisk(0);
-    delayMS(TRIGGERDELAY);
-    
-    rotateDisk(180);
-    delayMS(TRIGGERDELAY);
-    rotateDisk(0);
+    rotateDisk(TRIGGERDEGREE2);
     delayMS(TRIGGERDELAY);
     
-    rotateDisk(180);
+    rotateDisk(TRIGGERDEGREE);
     delayMS(TRIGGERDELAY);
+    rotateDisk(TRIGGERDEGREE2);
+    delayMS(TRIGGERDELAY);
+    
+    rotateDisk(TRIGGERDEGREE);
+    delayMS(TRIGGERDELAY);
+    rotateDisk(TRIGGERDEGREE2);
+    delayMS(TRIGGERDELAY);
+    
+    rotateDisk(TRIGGERDEGREE);
+    delayMS(TRIGGERDELAY);
+    rotateDisk(TRIGGERDEGREE2);
+    delayMS(TRIGGERDELAY);
+    
+    rotateDisk(TRIGGERDEGREE);
+    delayMS(TRIGGERDELAY);
+    rotateDisk(TRIGGERDEGREE2);
+    delayMS(TRIGGERDELAY);
+    
+//    rotateDisk(TRIGGERDEGREE);
+//    delayMS(TRIGGERDELAY);
+//    rotateDisk(0);
+//    delayMS(TRIGGERDELAY);
+//    
+//    rotateDisk(TRIGGERDEGREE);
+//    delayMS(TRIGGERDELAY);
+//    rotateDisk(0);
+//    delayMS(TRIGGERDELAY);
 //    rotateDisk(0);
 //    delayMS(500);
     
@@ -203,9 +225,10 @@ void getAverageIR()
 void shoot()
 {
     toggleSolenoid(ON);
-    delayMS(1000);
+    delayMS(SOLENOIDDELAY);
     toggleSolenoid(OFF);
     decrementByOne(&ballCount);
+    delayMS(1000);
     
 }
 
@@ -229,7 +252,7 @@ int isMaxIR(int IRPIN){
     switch(IRPIN){
         case LEFTIR:
             anV = readAD(18);
-            if (anV < readAD(17) || anV < readAD(15) || anV < readAD(16)){
+            if (anV < readAD(17) || anV < readAD(15) /*|| anV < readAD(16)*/){
                 returnBool = 0;
             }
             else{
@@ -238,7 +261,7 @@ int isMaxIR(int IRPIN){
             break;
         case RIGHTIR:
             anV = readAD(17);
-            if (anV < readAD(18) || anV < readAD(15) || anV < readAD(16)){
+            if (anV < readAD(18) || anV < readAD(15)/* || anV < readAD(16)*/){
                 returnBool = 0;
             }
             else{
@@ -247,7 +270,7 @@ int isMaxIR(int IRPIN){
             break;
         case FRONTIR:
             anV = readAD(15);
-            if (anV < readAD(17) || anV < readAD(18) || anV < readAD(16)){
+            if (anV < readAD(17) || anV < readAD(18)/* || anV < readAD(16)*/){
                 returnBool = 0;
             }
             else{
